@@ -12,10 +12,9 @@ def addPlayer(mainApp):
 
     # Distinguishing if editing the name or adding a new player...
     if mainApp.match_inst.editNameMode == True:
-        tmp = mainApp.match_inst.playerIndex[:1]  # Who is playing
-        currentPlayer = tmp[0]
+        currentPlayer = mainApp.match_inst.playerIndex[0] # active player index
     elif mainApp.match_inst.editNameMode == False:
-        currentPlayer = mainApp.match_inst.getNplayer() +1
+        currentPlayer = mainApp.match_inst.getNplayer() + 1
 
     # Populate all sub-GUI widgets
     mainApp.subWin.emptylabel_1 = Label(mainApp.subWin, padx=10, pady=10, bg=mainApp.Button_bg_color)
@@ -25,12 +24,12 @@ def addPlayer(mainApp):
                                            fg=mainApp.Button_ft_color)
 
     mainApp.subWin.errorStatus = Label(mainApp.subWin, text="", bg=mainApp.Button_bg_color, fg="cyan")
-    mainApp.subWin.input_Name = Entry(mainApp.subWin, width=20, bg='black', fg='yellow', borderwidth=3,
+    mainApp.subWin.input_Name = Entry(mainApp.subWin, width=20, bg='black', fg=mainApp.currentplayer_color, borderwidth=3,
                                          font=("Helvetica", 16), justify='center')
 
     mainApp.subWin.button_commitAddPlayer = Button(mainApp.subWin, text="Enregistrer", padx=10, pady=5,
                                                       font=("Helvetica", 12), bg=mainApp.Button_bg_color,
-                                                      fg="yellow", command=mainApp.commitAddPlayer,
+                                                      fg=mainApp.currentplayer_color, command=mainApp.commitAddPlayer,
                                                       activebackground=mainApp.activeButton_bg_color,
                                                       activeforeground=mainApp.activeButton_ft_color)
 

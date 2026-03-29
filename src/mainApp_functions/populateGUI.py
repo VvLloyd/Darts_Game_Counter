@@ -5,7 +5,7 @@ from PIL import ImageTk, Image
 def populateGUI(self, master):
     master.configure(bg=self.Button_bg_color)
     master.title("Score Board")
-    master.geometry("1095x880")
+    master.geometry("1080x880")
     master.resizable(False, False)
     master.iconbitmap("./data/images/dart_icon.ico")
     cW.centerWindow(master)
@@ -22,15 +22,15 @@ def populateGUI(self, master):
 
     # To create horizontal space between frames (this area provide instructions & Game Status)
     self.emptylabel0 = Label(self.BackgroundFrame, padx=25, pady=30, bg=self.Button_bg_color)
-    self.emptylabel0.grid(row=2, column=1, columnspan=3)
+    self.emptylabel0.grid(row=2, column=0, columnspan=3)
 
     # To create a vertical space between first column of frames
     self.emptylabel_1 = Label(self.BackgroundFrame, padx=20, pady=5, bg=self.Button_bg_color)
     self.emptylabel_1.grid(row=2, column=0, rowspan=14)
 
     # Calculator and submit button frame
-    self.frame1 = LabelFrame(self.BackgroundFrame, padx=10, pady=10, bg=self.Button_bg_color)
-    self.frame1.grid(row=5, column=1, columnspan=3, rowspan=5)
+    self.frame1 = LabelFrame(self.BackgroundFrame, padx=25, pady=10, bg=self.Button_bg_color)
+    self.frame1.grid(row=5, column=0, columnspan=3, rowspan=5)
 
     # To create a vertical space after first column of frames
     self.emptylabel_3 = Label(self.BackgroundFrame, padx=20, pady=10, bg=self.Button_bg_color)
@@ -42,54 +42,22 @@ def populateGUI(self, master):
 
     # Entry Score frame
     self.frame2 = LabelFrame(self.BackgroundFrame, padx=10, pady=10, bg=self.Button_bg_color)
-    self.frame2.grid(row=3, column=1, columnspan=3)
+    self.frame2.grid(row=3, column=0, columnspan=3)
 
     # Start Game button frame
     self.frame9 = LabelFrame(self.BackgroundFrame, padx=10, pady=10, bg=self.Button_bg_color)
-    self.frame9.grid(row=3, column=5, columnspan=7, rowspan=1, sticky=W)
-
-    # Turn arrow panel for player 1
-    self.arrowLabel_1 = Label(self.BackgroundFrame, padx=10, pady=0, bg=self.Button_bg_color)
-    self.arrowLabel_1.grid(row=4, column=5, rowspan=2, columnspan=3, ipady=1)
-
-    # Turn arrow panel for player 2
-    self.arrowLabel_2 = Label(self.BackgroundFrame, padx=10, pady=0, bg=self.Button_bg_color)
-    self.arrowLabel_2.grid(row=4, column=9, rowspan=2, columnspan=3, ipady=1)
-
-    # Turn arrow panel for player 3
-    self.arrowLabel_3 = Label(self.BackgroundFrame, padx=10, pady=0, bg=self.Button_bg_color)
-    self.arrowLabel_3.grid(row=7, column=5, rowspan=2, columnspan=3, ipady=10)
-
-    # Turn arrow panel for player 4
-    self.arrowLabel_4 = Label(self.BackgroundFrame, padx=10, pady=0, bg=self.Button_bg_color)
-    self.arrowLabel_4.grid(row=7, column=9, rowspan=2, columnspan=3, ipady=10)
+    self.frame9.grid(row=3, column=4, columnspan=7, rowspan=1, sticky=W)
 
     # End turn button frame
     self.frame7 = LabelFrame(self.BackgroundFrame, padx=10, pady=5, bg=self.Button_bg_color)
-    self.frame7.grid(row=10, column=2, columnspan=1)
-
-    # player 1 frame
-    self.frame_player_1 = LabelFrame(self.BackgroundFrame, padx=30, pady=20, bg=self.Button_bg_color)
-    self.frame_player_1.grid(row=5, column=5, columnspan=4, rowspan=3)
-
-    # player 2 frame
-    self.frame_player_2 = LabelFrame(self.BackgroundFrame, padx=30, pady=20, bg=self.Button_bg_color)
-    self.frame_player_2.grid(row=5, column=9, columnspan=4, rowspan=3)
-
-    # player 3 frame
-    self.frame_player_3 = LabelFrame(self.BackgroundFrame, padx=30, pady=20, background=self.Button_bg_color)
-    self.frame_player_3.grid(row=7, column=5, columnspan=4, rowspan=8)
-
-    # fourth player 4 frame
-    self.frame_player_4 = LabelFrame(self.BackgroundFrame, padx=30, pady=20, bg=self.Button_bg_color)
-    self.frame_player_4.grid(row=7, column=9, columnspan=4, rowspan=8)
+    self.frame7.grid(row=10, column=0, columnspan=3)
 
     # --------------------------------------------------------------------------------------------------------------
     #   CREATING BUTTONS
     # --------------------------------------------------------------------------------------------------------------
 
     # Define buttons
-
+    # Clickpad
     self.button_0 = Button(self.frame1, text="0", padx=40, pady=20, font=("Helvetica", 25), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(0),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
@@ -130,8 +98,10 @@ def populateGUI(self, master):
                            fg=self.Button_ft_color, command=lambda: self.clickPad(9),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
+
+    # Commit Score
     self.button_commitScore = Button(self.frame1, text="Soumettre", padx=100, pady=20, font=("Helvetica", 25),
-                                     bg=self.Button_bg_color, fg="yellow", command=self.commitScore,
+                                     bg=self.Button_bg_color, fg=self.currentplayer_color, command=self.commitScore,
                                      activebackground=self.activeButton_bg_color,
                                      activeforeground=self.activeButton_ft_color,
                                      state="disabled")
@@ -147,7 +117,7 @@ def populateGUI(self, master):
 
     self.button_gameMode = Button(self.frame0, text="Mode de Jeu", padx=35, pady=3, font=("Helvetica", 12),
                                   bg=self.Button_bg_color, fg=self.Button_ft_color, state='normal',
-                                  command=self.populateGModeGUI,
+                                  command=lambda: self.populateGModeGUI(master),
                                   activebackground=self.activeButton_bg_color,
                                   activeforeground=self.activeButton_ft_color)
 
@@ -221,226 +191,211 @@ def populateGUI(self, master):
     # self.button_goBack.grid(row=13, column=5, ipadx=5, columnspan=1, sticky="SE")
     # self.button_forward.grid(row=13, column=6, ipadx=5, columnspan=1, sticky="SW")
     self.button_restartBoard.grid(row=13, column=10, columnspan=1, sticky="SE")
-    self.button_quit.grid(row=13, column=11, columnspan=1, sticky="SE")
+    self.button_quit.grid(row=13, column=11, columnspan=1, sticky="SE")  
+
 
     # ---------------------------------------------------------------------------------------------------------------
     # CREATING ENTRY BOXES
     # ---------------------------------------------------------------------------------------------------------------
     # Create Score Entry box
-    self.input_Score = Entry(self.frame2, width=5, bg='black', fg='yellow', borderwidth=3, font=("Helvetica", 50),
-                             justify='center', disabledbackground='black', disabledforeground="yellow",
+    self.input_Score = Entry(self.frame2, width=5, bg='black', fg=self.currentplayer_color, borderwidth=3, font=("Helvetica", 50),
+                             justify='center', disabledbackground='black', disabledforeground=self.currentplayer_color,
                              state=DISABLED)
-    self.input_Score.grid(row=0, column=0, columnspan=3)
+    self.input_Score.grid(row=0, column=0, columnspan=3) 
 
+
+    
     # CREATING PLAYERS ENTRY BOXES
-    # First Player Name and Score
-    self.player_1_label_1 = Entry(self.frame_player_1, width=16, bg=self.Button_bg_color, fg="grey", borderwidth=0,
-                                  font=("Helvetica", 14),
-                                  justify='center', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey")
+    # First Player Name and Score  
+    # ===============================
+    # PLAYERS FRAMES
+    # ===============================
+    player_frames = [
+        ("frame_player_1", 5, 4, 4, 2),
+        ("frame_player_2", 5, 8, 4, 2),
+        ("frame_player_3", 7, 4, 4, 6),
+        ("frame_player_4", 7, 8, 4, 6),
+    ]
 
-    self.player_1_label_2 = Entry(self.frame_player_1, width=6, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 30),
-                                  justify='center', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey")
+    for name, row, col, colspan, rowspan in player_frames:
+        frame = LabelFrame(
+            self.BackgroundFrame,
+            padx=29,
+            pady=20,
+            bg=self.Button_bg_color,
+            highlightbackground=self.Button_bg_color,   # border color
+            highlightthickness=2         # border width
+        )
+        frame.grid(row=row, column=col, columnspan=colspan, rowspan=rowspan)
+        setattr(self, name, frame)
+    
+    # ---------- Player Frames ----------
+    self.player_frames_list = [
+        self.frame_player_1,
+        self.frame_player_2,
+        self.frame_player_3,
+        self.frame_player_4
+    ]
 
-    self.player_1_label_3 = Entry(self.frame_player_1, width=10, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 8),
-                                  justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
+    # Lists to store references for later use
+    self.player_name_labels = []
+    self.player_score_labels = []
+    self.player_doubleIn_vars = []
+    self.player_labels_dict = {}  # Optional dict per player
+    self.player_buttons_dict = {}
 
-    self.player_1_label_4 = Entry(self.frame_player_1, width=15, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 8),
-                                  justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
+    # ---------- Helper Functions ----------
+    def create_entry(frame, width, font, justify='center', borderwidth=1, border_zero=True):
+        return Entry(
+            frame,
+            width=width,
+            bg=self.Button_bg_color,
+            fg="grey",
+            borderwidth=borderwidth,
+            font=font,
+            justify=justify,
+            disabledbackground=self.Button_bg_color,
+            disabledforeground="grey",
+            border=0 if border_zero else borderwidth
+        )
 
-    if self.match_inst.doubleInMode:
-        self.p1_DoubleInVar = IntVar()
-        self.player_1_checkbox = Checkbutton(self.frame_player_1, onvalue=True, offvalue=0, variable=self.p1_DoubleInVar,
-                                             command=lambda: self.checkChanged(), disabledforeground=self.disabledButton_ft_color,
-                                             font="black", bg=self.Button_bg_color, state="disabled")
-        self.player_1_checkbox.grid(row=3, column=2, pady=0, sticky=E)
-        self.arrowLabel_1.grid(row=4, column=5, rowspan=2, columnspan=3, ipady=15)
+    def setup_entry(widget, row, column, text, pady=0, sticky=None, columnspan=None):
+        widget.grid(row=row, column=column, pady=pady, sticky=sticky, columnspan=columnspan)
+        widget.insert(0, text)
+        widget.config(state=DISABLED)
 
-        self.player_1_label_5 = Entry(self.frame_player_1, bg=self.Button_bg_color, fg="grey",
-                                  font=("Helvetica", 8),
-                                  justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
-        self.player_1_label_5.insert(0, "Double In: ")
-        self.player_1_label_5.grid(row=3, column=1, pady=0, sticky=E)
-        self.player_1_label_5.config(state=DISABLED)
+    # ---------- Loop for 4 players ----------
+    for i, frame in enumerate(self.player_frames_list, start=1):
 
-    self.player_1_label_1.grid(row=0, column=0, columnspan=3)
-    self.player_1_label_1.insert(0, "Ajoutez le Joueur #1")
-    self.player_1_label_1.config(state=DISABLED)
+        self.player_labels_dict[i] = {}
 
-    self.player_1_label_2.grid(row=2, column=0, pady=10, columnspan=3)
-    self.player_1_label_2.insert(0, "301")
-    self.player_1_label_2.config(state=DISABLED)
+        # Name entry
+        name_entry = create_entry(frame, 16, ("Helvetica", 14))
+        setup_entry(name_entry, 0, 0, f"Ajoutez le Joueur #{i}", columnspan=3)
+        self.player_labels_dict[i]['name'] = name_entry
+        self.player_name_labels.append(name_entry)
 
-    self.player_1_label_3.grid(row=4, column=1, pady=0, sticky=E)
-    self.player_1_label_3.insert(0, "Avr: --")
-    self.player_1_label_3.config(state=DISABLED)
+        # AVR and HighScore entries
+        avr_entry = create_entry(frame, 10, ("Helvetica", 8), justify='right')
+        highscore_entry = create_entry(frame, 15, ("Helvetica", 8), justify='right')
+        self.player_labels_dict[i]['avr'] = avr_entry
+        self.player_labels_dict[i]['highscore'] = highscore_entry
 
-    self.player_1_label_4.grid(row=5, column=1, pady=0, sticky=E)
-    self.player_1_label_4.insert(0, "HighScore: --")
-    self.player_1_label_4.config(state=DISABLED)
+        # Score entry (big number) keeps black border
+        score_entry = create_entry(frame, 6, ("Helvetica", 25), borderwidth=1, border_zero=False)
+        self.player_labels_dict[i]['score'] = score_entry
+        self.player_score_labels.append(score_entry)
+        
+        mode = self.match_inst.CommitGameMode[0]
 
-    # Second Player Name and Score
-    self.player_2_label_1 = Entry(self.frame_player_2, width=16, bg=self.Button_bg_color, fg="grey", borderwidth=0,
-                                  font=("Helvetica", 14),
-                                  justify='center', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey")
-    self.player_2_label_2 = Entry(self.frame_player_2, width=6, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 30),
-                                  justify='center', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey")
+        # ---------- 301 / 501 ----------
+        if mode in (1, 2):
+            starting_score = "301" if mode == 1 else "501"
 
-    self.player_2_label_3 = Entry(self.frame_player_2, width=10, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 8),
-                                  justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
+            # Double-In
+            if self.match_inst.doubleInMode:
+                var = IntVar()
+                self.player_doubleIn_vars.append(var)
+                self.player_labels_dict[i]['doubleIn_var'] = var
 
-    self.player_2_label_4 = Entry(self.frame_player_2, width=10, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 8),
-                                  justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
+                checkbox = Checkbutton(
+                    frame,
+                    onvalue=True,
+                    offvalue=0,
+                    variable=var,
+                    command=self.DoubleIncheckChanged,
+                    disabledforeground=self.disabledButton_ft_color,
+                    font="black",
+                    bg=self.Button_bg_color,
+                    state="disabled"
+                )
+                checkbox.grid(row=3, column=2, pady=0, sticky=E)
+                self.player_labels_dict[i]['doubleIn_checkbox'] = checkbox
 
-    if self.match_inst.doubleInMode:
-        self.p2_DoubleInVar = IntVar()
-        self.player_2_checkbox = Checkbutton(self.frame_player_2, onvalue=True, offvalue=0, variable=self.p2_DoubleInVar,
-                                             command=lambda: self.checkChanged(), disabledforeground=self.disabledButton_ft_color,
-                                             font="black", bg=self.Button_bg_color, state="disabled")
-        self.player_2_checkbox.grid(row=3, column=2, pady=0, sticky=E)
-        self.arrowLabel_2.grid(row=4, column=9, rowspan=2, columnspan=3, ipady=15)
+                double_in_label = create_entry(frame, 0, ("Helvetica", 8), justify='right')
+                setup_entry(double_in_label, 3, 1, "Double In: ", sticky=E)
+                self.player_labels_dict[i]['double_in'] = double_in_label
 
-        self.player_2_label_5 = Entry(self.frame_player_2, bg=self.Button_bg_color, fg="grey",
-                                  font=("Helvetica", 8), justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
-        self.player_2_label_5.insert(0, "Double In: ")
-        self.player_2_label_5.grid(row=3, column=1, pady=0, sticky=E)
-        self.player_2_label_5.config(state=DISABLED)
+            setup_entry(score_entry, 2, 0, starting_score, pady=10, columnspan=3)
+            setup_entry(avr_entry, 4, 1, "Avr: --", sticky=E)
+            setup_entry(highscore_entry, 5, 1, "HighScore: --", sticky=E)
 
+       # ---------- Mode 7 ----------
+        elif mode == 7:
 
-    self.player_2_label_1.grid(row=0, column=0, columnspan=3)
-    self.player_2_label_1.insert(0, "Ajoutez le Joueur #2")
-    self.player_2_label_1.config(state=DISABLED)
+            self.player_labels_dict[i]['score'].config(font=("Helvetica", 18))
 
-    self.player_2_label_2.grid(row=2, column=0, pady=10, columnspan=3)
-    self.player_2_label_2.insert(0, "301")
-    self.player_2_label_2.config(state=DISABLED)
+            self.player_labels_dict[i]['name'].grid_configure(columnspan=5)
 
-    self.player_2_label_3.grid(row=4, column=1, pady=0, sticky=E)
-    self.player_2_label_3.insert(0, "Avr: --")
-    self.player_2_label_3.config(state=DISABLED)
+            # Fixed grid layout inside player frame (keeps everything on the left)
+            frame.grid_columnconfigure(0, minsize=90)
+            frame.grid_columnconfigure(1, minsize=24)
+            frame.grid_columnconfigure(2, minsize=24)
+            frame.grid_columnconfigure(3, minsize=24)
 
-    self.player_2_label_4.grid(row=5, column=1, pady=0, sticky=E)
-    self.player_2_label_4.insert(0, "HighScore: --")
-    self.player_2_label_4.config(state=DISABLED)
+            setup_entry(score_entry, 2, 0, "0", pady=4, columnspan=5)
 
-    # Third Player Name and Score
-    self.player_3_label_1 = Entry(self.frame_player_3, width=16, bg=self.Button_bg_color, fg="grey", borderwidth=0,
-                                  font=("Helvetica", 14),
-                                  justify='center', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey")
-    self.player_3_label_2 = Entry(self.frame_player_3, width=6, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 30),
-                                  justify='center', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey")
+            button_texts = ["Bullseye", "20", "19", "18", "17", "16", "15"]
+            
+            #“Open” → A number is open when it’s still available to be hit (i.e., not yet closed by a player).
+            #“Closed” → A number is closed once a player has hit it three times.
+            #“Scoring” → A number becomes scoring (for you) if you’ve closed it but 
+            #             your opponent hasn’t—so any extra hits score points.
+            #“Dead” → A number is dead when both players have closed it, so it no longer matters.                      
+            self.open_button_texts = button_texts
+            self.closed_button_texts = []
+            self.dead_button_texts = []
 
-    self.player_3_label_3 = Entry(self.frame_player_3, width=10, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 8),
-                                  justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
+            self.player_buttons_dict[i] = {}
+            self.player_buttons_dict[i]['buttons']= {}
+            self.player_buttons_dict[i]['checkboxes']= {}
 
-    self.player_3_label_4 = Entry(self.frame_player_3, width=10, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 8),
-                                  justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
+            for j, text in enumerate(button_texts):
 
-    if self.match_inst.doubleInMode:
-        self.p3_DoubleInVar = IntVar()
-        self.player_3_checkbox = Checkbutton(self.frame_player_3, onvalue=True, offvalue=0, variable=self.p3_DoubleInVar,
-                                             command=lambda: self.checkChanged(), disabledforeground=self.disabledButton_ft_color,
-                                             font="black", bg=self.Button_bg_color,state="disabled")
-        self.player_3_checkbox.grid(row=3, column=2, pady=0, sticky=E)
-        self.arrowLabel_3.grid(row=7, column=5, rowspan=2, columnspan=3, ipady=23)
+                btn = Button(
+                    frame,
+                    text=text,
+                    width=12,
+                    pady=-60,
+                    font=("Helvetica", 9),
+                    bg=self.Button_bg_color,
+                    fg=self.Button_ft_color,
+                    state=DISABLED,
+                    command=lambda t=text: self.clickPad(t),
+                    activebackground=self.activeButton_bg_color,
+                    activeforeground=self.activeButton_ft_color
+                )
 
-        self.player_3_label_5 = Entry(self.frame_player_3, bg=self.Button_bg_color, fg="grey",
-                                  font=("Helvetica", 8),
-                                  justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
-        self.player_3_label_5.insert(0, "Double In: ")
-        self.player_3_label_5.grid(row=3, column=1, pady=0, sticky=E)
-        self.player_3_label_5.config(state=DISABLED)
+                # Button aligned to the right inside its column
+                btn.grid(row=4 + j, column=0, pady=1, sticky=W, columnspan=2)                
 
-    self.player_3_label_1.grid(row=0, column=0, columnspan=3)
-    self.player_3_label_1.insert(0, "Ajoutez le Joueur #3")
-    self.player_3_label_1.config(state=DISABLED)
+                self.player_buttons_dict[i]['buttons'][text]= btn
+                self.player_buttons_dict[i]['checkboxes'][text] = {}
 
-    self.player_3_label_2.grid(row=2, column=0, pady=10, columnspan=3)
-    self.player_3_label_2.insert(0, "301")
-    self.player_3_label_2.config(state=DISABLED)
+                # 3 Cricket marks
+                for k in range(3):
+                    lbl = Label(
+                        frame,
+                        text=" ",
+                        #text="✓",
+                        width=2,
+                        height=1,
+                        font=("Helvetica", 10),
+                        relief="solid",
+                        bd=1,
+                        bg=self.Button_bg_color2,
+                        fg="cyan"
+                    )
 
-    self.player_3_label_3.grid(row=4, column=1, pady=0, sticky=E)
-    self.player_3_label_3.insert(0, "Avr: --")
-    self.player_3_label_3.config(state=DISABLED)
+                    lbl.grid(
+                        row=4 + j,
+                        column=2 + k,
+                        padx=8,
+                        pady=1,
+                        sticky=W
+                    )
 
-    self.player_3_label_4.grid(row=5, column=1, pady=0, sticky=E)
-    self.player_3_label_4.insert(0, "HighScore: --")
-    self.player_3_label_4.config(state=DISABLED)
-
-    # Fourth Player Name and Score
-    self.player_4_label_1 = Entry(self.frame_player_4, width=16, bg=self.Button_bg_color, fg="grey", borderwidth=0,
-                                  font=("Helvetica", 14),
-                                  justify='center', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey")
-    self.player_4_label_2 = Entry(self.frame_player_4, width=6, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 30),
-                                  justify='center', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey")
-
-    self.player_4_label_3 = Entry(self.frame_player_4, width=10, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 8),
-                                  justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
-
-    self.player_4_label_4 = Entry(self.frame_player_4, width=10, bg=self.Button_bg_color, fg="grey", borderwidth=1,
-                                  font=("Helvetica", 8),
-                                  justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
-
-    if self.match_inst.doubleInMode:
-        self.p4_DoubleInVar = IntVar()
-        self.player_4_checkbox = Checkbutton(self.frame_player_4, onvalue=True, offvalue=0, variable=self.p4_DoubleInVar,
-                                             command=lambda: self.checkChanged(), disabledforeground=self.disabledButton_ft_color,
-                                             font="black", bg=self.Button_bg_color,state="disabled")
-        self.player_4_checkbox.grid(row=3, column=2, pady=0, sticky=E)
-        self.arrowLabel_4.grid(row=7, column=9, rowspan=2, columnspan=3, ipady=23)
-
-        self.player_4_label_5 = Entry(self.frame_player_4, bg=self.Button_bg_color, fg="grey",
-                                  font=("Helvetica", 8),
-                                  justify='right', disabledbackground=self.Button_bg_color,
-                                  disabledforeground="grey", border=0)
-        self.player_4_label_5.insert(0, "Double In: ")
-        self.player_4_label_5.grid(row=3, column=1, pady=0, sticky=E)
-        self.player_4_label_5.config(state=DISABLED)
-
-    self.player_4_label_1.grid(row=0, column=0, columnspan=3)
-    self.player_4_label_1.insert(0, "Ajoutez le Joueur #4")
-    self.player_4_label_1.config(state=DISABLED)
-
-    self.player_4_label_2.grid(row=2, column=0, pady=10, columnspan=3)
-    self.player_4_label_2.insert(0, "301")
-    self.player_4_label_2.config(state=DISABLED)
-
-    self.player_4_label_3.grid(row=4, column=1, pady=0, sticky=E)
-    self.player_4_label_3.insert(0, "Avr: --")
-    self.player_4_label_3.config(state=DISABLED)
-
-    self.player_4_label_4.grid(row=5, column=1, pady=0, sticky=E)
-    self.player_4_label_4.insert(0, "HighScore: --")
-    self.player_4_label_4.config(state=DISABLED)
+                    self.player_buttons_dict[i]['checkboxes'][text][str(k)]= lbl
 
     # ---------------------------------------------------------------------------------------------------------------
     # CREATING STATUS
@@ -454,14 +409,10 @@ def populateGUI(self, master):
     # CREATING IMAGES (from .SGI files)
     # ---------------------------------------------------------------------------------------------------------------
     global logoImage
-    global arrowImage
 
     logoImage = ImageTk.PhotoImage(Image.open("./data/images/dart_Logo2.sgi"))
     self.logoImage = Label(self.emptylabel_3, image=logoImage, bg=self.Button_bg_color, fg="grey")
     self.logoImage.grid(row=1, column=1, columnspan=3)
-
-    arrowImage = ImageTk.PhotoImage(Image.open("./data/images/arrow.sgi"))
-    self.arrowImage = Label(self.arrowLabel_1, image=arrowImage, bg=self.Button_bg_color, fg="grey")
 
     # ---------------------------------------------------------------------------------------------------------------
     # SOFTWARE VERSION LABEL
@@ -473,3 +424,4 @@ def populateGUI(self, master):
     self.softVersionLabel.grid(row=13, column=0, rowspan=2, sticky="SW")
 
     return
+

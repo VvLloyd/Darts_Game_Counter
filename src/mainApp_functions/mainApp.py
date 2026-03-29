@@ -1,10 +1,10 @@
 from tkinter import *
 # import all Class methods as aliases, from the mainApps_functions directory;
-from mainApp_functions import populateGUI as pGUI, initializeGUIvar, keyBindSetup as kBs, updateIndexLog as uIL, \
+from mainApp_functions import DoubleIncheckChanged as DIcC, populateGUI as pGUI, initializeGUIvar, keyBindSetup as kBs, updateIndexLog as uIL, \
     writeCommitScore as wCS, endTurn as eT, clickPad as cP, commitScore as cS, commitAddPlayer as cAP, updateStatusLabel as uSL, \
     clearClickPad as cCP, startGame as sG, editScore as eS, addPlayer as aP, refreshImages as rI, editName as eN, \
     destroySubWin as dSW, quitGame as qG, populateGModeGUI as popGMGUI, commitGameMode as cGM, selectedMode as sM, \
-    checkChanged as cC, checkChangedDoubleIn as cCDI
+    checkChangedDoubleIn as cCDI, checkChangedDoubleOut as cCDO
 
 
 class mainApp:
@@ -97,22 +97,25 @@ class mainApp:
         qG.quitGame(self, tk_layer)
         return
 
-    def populateGModeGUI(self):
-        popGMGUI.populateGModeGUI(self)
+    def populateGModeGUI(self, tk_layer):
+        popGMGUI.populateGModeGUI(self, tk_layer)
         return
 
-    def commitGameMode(self):
-        cGM.commitGameMode(self)
+    def commitGameMode(self, tk_layer):
+        cGM.commitGameMode(self, tk_layer)
         return
 
-    def selectedMode(self):
-        sM.selectedMode(self)
+    def selectedMode(self, sel_mode, double_in=False, double_out=False):
+        sM.selectedMode(self, sel_mode, double_in, double_out)
         return
 
-    def checkChanged(self):
-        cC.checkChanged(self)
-        return
+    def DoubleIncheckChanged(self):
+        DIcC.DoubleIncheckChanged(self)
+        return   
 
     def checkChangedDoubleIn(self, buttonPressed):
         cCDI.checkChangedDoubleIn(self,buttonPressed)
+
+    def checkChangedDoubleOut(self, buttonPressed):
+        cCDO.checkChangedDoubleOut(self,buttonPressed)
 

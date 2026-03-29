@@ -22,7 +22,8 @@ def updateIndexLog(mainApp):
 
         for i in range(totalPlayer[0]): # add all columns needed for the match
 
-            CommittedScoreToLog = eval("int(mainApp.player_"+str(i+1)+"_label_2.get())") # Read the initial score in the GUI
+            CommittedScoreToLog = mainApp.player_labels_dict[i+1]['score'].get()
+            
             eval("mainApp.turnIndexLog.insert(len(mainApp.turnIndexLog.columns), 'P_"+str(i+1)+"_Entry', 0)")
             eval("mainApp.turnIndexLog.insert(len(mainApp.turnIndexLog.columns), 'P_"+str(i+1)+"_Score', CommittedScoreToLog)")
             if mainApp.match_inst.doubleInMode == True: # if this mode is on, add column for each player
@@ -63,8 +64,7 @@ def updateIndexLog(mainApp):
                 PIPE = False # Set to false, loop is over...
 
         # Extract the score that just got commited (after commit score button was pressed)
-        CommittedScoreToLog = eval("(mainApp.player_"+str(currentPlayer[0])+"_label_2.get())")
-
+        CommittedScoreToLog = mainApp.player_labels_dict[currentPlayer[0]]['score'].get()
 
         # If the score is the same as the previous, overwrite the variable with "|". This is to ease the statistical functions.
         # The idea is to only keep score changes. Note that the EndTurn symbol is "|".
@@ -102,7 +102,7 @@ def updateIndexLog(mainApp):
         # Log and Deal with the DoubleIn mode
         if mainApp.match_inst.doubleInMode == True:
             if currentPlayer == lastPlayerTurn:
-                DoubleInStatus = eval("mainApp.p"+str(currentPlayer[0])+"_DoubleInVar.get()")
+                DoubleInStatus = mainApp.player_labels_dict[currentPlayer[0]]['doubleIn_var'].get()
             # Will log the line with the double-in status
             toAppend = eval("pd.DataFrame([[currentIndex, currentGameTurn, currentPlayer[0], player_entry, CommittedScoreToLog, DoubleInStatus]], "
                             "columns=['index', 'gameTurn', 'playerTurn', 'P_"+str(currentPlayer[0])+"_Entry', 'P_"+str(currentPlayer[0])+"_Score','P_"+str(currentPlayer[0])+"_DoubleIn'])")

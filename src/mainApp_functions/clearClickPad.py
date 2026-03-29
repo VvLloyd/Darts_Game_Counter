@@ -3,10 +3,10 @@ from tkinter import *
 def clearClickPad(mainApp):
     # A class "Game" with its properties must be sent to this function
     # Transfer created player to the Lobby
-    currentPlayer = mainApp.match_inst.playerIndex[:1]  # Who is playing
+    currentPlayer = mainApp.match_inst.playerIndex[:1][0]  # Who is playing
 
     if mainApp.match_inst.doubleInMode == True:
-        DoubleInStatus = eval("mainApp.p"+str(currentPlayer[0])+"_DoubleInVar.get()")
+        DoubleInStatus = mainApp.player_labels_dict[currentPlayer]['doubleIn_var'].get()
     else:
         DoubleInStatus = False
 
@@ -18,9 +18,9 @@ def clearClickPad(mainApp):
             mainApp.button_commitScore.configure(state=DISABLED)  # Clearing is also disabling the commit score button
 
         if mainApp.match_inst.editScoreMode == True:
-            eval("mainApp.player_" + str(currentPlayer[0]) + "_label_2.config(state=NORMAL)")
-            eval("mainApp.player_" + str(currentPlayer[0]) + "_label_2.delete(0, END)")
-            eval("mainApp.player_" + str(currentPlayer[0]) + "_label_2.config(state=DISABLED)")
+            mainApp.player_labels_dict[currentPlayer]['score'].config(state=NORMAL)
+            mainApp.player_labels_dict[currentPlayer]['score'].delete(0, END)
+            mainApp.player_labels_dict[currentPlayer]['score'].config(state=DISABLED)
 
         mainApp.button_commitScore.configure(state=DISABLED)
     return

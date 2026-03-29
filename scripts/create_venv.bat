@@ -3,7 +3,7 @@
 :: #######################################################
 :: Environment Definition
 :: #######################################################
-set PYTHON_FOLDER=D:\python\python_3_10_0
+set PYTHON_FOLDER=D:\python\3_12_2
 :: #######################################################
 
 set "Current_Dir=%cd%\"
@@ -18,11 +18,10 @@ if %lastfolder% == scripts (
     :: Create venv
     echo y |%PYTHON_FOLDER%\python.exe -m venv ..\.venv
 
-    :: Need to add this var into the activate.bat before.
-    :: echo set "TCL_LIBRARY=%PYTHON_FOLDER%\tcl\tk8.6" >> ..\.venv\Scripts\activate.bat  
-
     :: activate the env
     call ..\.venv\Scripts\activate.bat    
+
+    python -m pip install --upgrade pip
 
     :: Display installed pkg
     pip list

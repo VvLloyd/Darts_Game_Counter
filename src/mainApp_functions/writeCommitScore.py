@@ -10,13 +10,13 @@ def writeCommitScore(mainApp):
         mainApp.input_Score.delete(0, END)
         mainApp.input_Score.config(state=DISABLED)
 
-        currentPlayerScore = eval("mainApp.player_" + str(currentPlayer[0]) +"_label_2.get()", {"mainApp": mainApp})
+        currentPlayerScore = mainApp.player_labels_dict[currentPlayer[0]]['score'].get()
 
         if int(currentPlayerScore) >= int(scoreToInput):
-            eval("mainApp.player_"+str(currentPlayer[0])+"_label_2.config(state=NORMAL)")
-            eval("mainApp.player_"+str(currentPlayer[0])+"_label_2.delete(0, END)")
-            eval("mainApp.player_"+str(currentPlayer[0])+"_label_2.insert(0, str(int(currentPlayerScore) - scoreToInput))")
-            eval("mainApp.player_"+str(currentPlayer[0])+"_label_2.config(state=DISABLED)")
+            mainApp.player_labels_dict[currentPlayer[0]]['score'].config(state=NORMAL)
+            mainApp.player_labels_dict[currentPlayer[0]]['score'].delete(0, END)
+            mainApp.player_labels_dict[currentPlayer[0]]['score'].insert(0, str(int(currentPlayerScore) - scoreToInput))
+            mainApp.player_labels_dict[currentPlayer[0]]['score'].config(state=DISABLED)
 
         mainApp.button_commitScore.configure(state=DISABLED)
     return

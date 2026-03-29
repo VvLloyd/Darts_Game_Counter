@@ -4,50 +4,48 @@ def endTurn(mainApp):
     if mainApp.match_inst.gameStarted == True:
 
         print(mainApp.match_inst.playerIndex)
-        mainApp.button_endTurn.configure(state=DISABLED) #De-activate button for safety
+        mainApp.button_endTurn.configure(state=DISABLED)
 
-        # get Current Player turn over the total nb of player
-        currentPlayer = mainApp.match_inst.playerIndex[:1]  # Who is playing
-        totalPlayer = mainApp.match_inst.playerIndex[1:] # Total number of players
+        n_players = mainApp.match_inst.getNplayer()
 
-        if currentPlayer < totalPlayer:
-            if currentPlayer == [1]: # if player #1 turn
-                mainApp.match_inst.playerIndex[0] = 2
-                if mainApp.match_inst.doubleInMode == True:
-                    mainApp.player_1_checkbox.config(state=DISABLED)
-                    if mainApp.p1_DoubleInVar.get() == True:
-                        mainApp.player_1_checkbox.config(state=DISABLED)
-                    if mainApp.p2_DoubleInVar.get() == False:
-                        mainApp.player_2_checkbox.config(state=NORMAL)
+        # Current player (1-based index)
+        current = mainApp.match_inst.playerIndex[0]
 
-            if currentPlayer == [2]:
-                mainApp.match_inst.playerIndex[0] = 3
-                if mainApp.match_inst.doubleInMode == True:
-                    mainApp.player_2_checkbox.config(state=DISABLED)
-                    if mainApp.p2_DoubleInVar.get() == True:
-                        mainApp.player_2_checkbox.config(state=DISABLED)
-                    if mainApp.p3_DoubleInVar.get()== False:
-                        mainApp.player_3_checkbox.config(state=NORMAL)
+        # Compute next player (wrap automatically)
+        next_player = current % n_players + 1
 
-            if currentPlayer == [3]:
-                mainApp.match_inst.playerIndex[0] = 4
-                if mainApp.match_inst.doubleInMode == True:
-                    mainApp.player_3_checkbox.config(state=DISABLED)
-                    if mainApp.p3_DoubleInVar.get() == True:
-                        mainApp.player_3_checkbox.config(state=DISABLED)
-                    if mainApp.p4_DoubleInVar.get()== False:
-                        mainApp.player_4_checkbox.config(state=NORMAL)
+        # Update stored index
+        mainApp.match_inst.playerIndex[0] = next_player
 
-        if currentPlayer == totalPlayer:
-            mainApp.match_inst.playerIndex[0] = 1
-            if mainApp.match_inst.doubleInMode == True:
-                eval("mainApp.player_"+str(currentPlayer[0])+"_checkbox.config(state=DISABLED)")
-                if eval("mainApp.p"+str(currentPlayer[0])+"_DoubleInVar.get()") == True:
-                    eval("mainApp.player_"+str(currentPlayer[0])+"_checkbox.config(state=DISABLED)")
-                if mainApp.p1_DoubleInVar.get() == False:
-                    mainApp.player_1_checkbox.config(state=NORMAL)
-            
-            #if this is the last player to play, the log "game turn" is updated by 1  **To be removed...
+        # Update UI highlights
+        mainApp.player_frames_list[current - 1].config(
+            highlightbackground=mainApp.Button_bg_color
+        )
+        mainApp.player_frames_list[next_player - 1].config(
+            highlightbackground=mainApp.currentplayer_color
+        )
+
+        mode = mainApp.match_inst.CommitGameMode[0]
+        if mode == 1 or mode == 2:  # 301/501 mode
+
+            # Handle double-in mode
+            if mainApp.match_inst.doubleInMode:
+                # Disable current player's checkbox
+                mainApp.player_labels_dict[current]['doubleIn_checkbox'].config(state=DISABLED)
+
+                # Enable next player's checkbox only if needed
+                if not mainApp.player_labels_dict[next_player]['doubleIn_var'].get():
+                    mainApp.player_labels_dict[next_player]['doubleIn_checkbox'].config(state=NORMAL)
+
+        elif mode == 7: # Criquet mode
+
+            for text in mainApp.open_button_texts:
+                mainApp.player_buttons_dict[current]['buttons'][text].config(state=DISABLED)
+                if text not in mainApp.dead_button_texts:
+                    mainApp.player_buttons_dict[next_player]['buttons'][text].config(state=NORMAL)
+
+        # If we wrapped around, increment turn
+        if next_player == 1:
             mainApp.match_inst.currentGameTurn += 1
 
         # Cleanup score field for next player
@@ -55,7 +53,6 @@ def endTurn(mainApp):
         mainApp.input_Score.delete(0, END)
         mainApp.input_Score.config(state=DISABLED)
 
-        mainApp.arrowImage.grid_forget()
         mainApp.button_endTurn.configure(state='normal')
         mainApp.updateIndexLog()
         mainApp.refreshImages()

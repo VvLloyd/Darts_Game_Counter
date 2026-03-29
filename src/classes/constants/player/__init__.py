@@ -41,3 +41,10 @@ class __init__:
     def setDoubleInVar(self,value):
         self.DoubleInVar = bool(value)
         return
+    
+    def getDoubleOutVar(self):
+        return self.nbPlayer
+    
+    def setDoubleOutVar(self,value):
+        self.DoubleOutVar = bool(value)
+        return

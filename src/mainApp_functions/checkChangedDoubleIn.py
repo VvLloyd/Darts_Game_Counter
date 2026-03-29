@@ -3,11 +3,8 @@ from tkinter import *
 def checkChangedDoubleIn(mainApp,buttonPressed):
 
     selectedMode = mainApp.subWin.mode_var.get()
-    prevCommittedMode = mainApp.CommitGameMode[:1]
-    prevCommittedDounleInMode = mainApp.CommitGameMode[1:]
-
-    print(prevCommittedMode[0])
-    print(prevCommittedDounleInMode[0])
+    prevCommittedMode = mainApp.match_inst.CommitGameMode[:1]
+    prevCommittedDoubleInMode = mainApp.match_inst.CommitGameMode[1:]
 
     if buttonPressed == "ON":
         mainApp.match_inst.doubleInMode = True
@@ -23,11 +20,11 @@ def checkChangedDoubleIn(mainApp,buttonPressed):
         mainApp.subWin.DoubleInModeONVar.set(0)
         mainApp.subWin.DoubleInModeOFFVar.set(1)
 
-    if prevCommittedDounleInMode[0] != mainApp.match_inst.doubleInMode and selectedMode != prevCommittedMode[0]:
+    if prevCommittedDoubleInMode[0] != mainApp.match_inst.doubleInMode and selectedMode != prevCommittedMode[0]:
         mainApp.subWin.button_commitGameMode.config(state='normal')
-    elif prevCommittedDounleInMode[0] != mainApp.match_inst.doubleInMode and selectedMode == prevCommittedMode[0]:
+    elif prevCommittedDoubleInMode[0] != mainApp.match_inst.doubleInMode and selectedMode == prevCommittedMode[0]:
         mainApp.subWin.button_commitGameMode.config(state='normal')
-    elif prevCommittedDounleInMode[0] == mainApp.match_inst.doubleInMode and selectedMode == prevCommittedMode[0]:
+    elif prevCommittedDoubleInMode[0] == mainApp.match_inst.doubleInMode and selectedMode == prevCommittedMode[0]:
         mainApp.subWin.button_commitGameMode.config(state='disabled')
 
     return

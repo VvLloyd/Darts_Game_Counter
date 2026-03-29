@@ -1,55 +1,52 @@
-# import all Class methods as aliases, from the mainApps_functions directory;
-
-class __init__:
+class Player:
     """
     Class representing a Player with all its attributes.
-
-    Attributes:
-        current_score (int): 
-
     """
 
-    # Declare variables & types
-    name = str('')
-    current_score = int(0)
-    doubleInVal = bool(False)
-    
-    # -------------------------------------------------------------------------------------------------------------------
-    # DEFINING FUNCTIONS (CLASS METHODS)
-    # -------------------------------------------------------------------------------------------------------------------
-    # All below methods are stored in the mainApps_functions directory in separate .py files.
-    # The name of the .py file and function must be the same in order to work properly
+    def __init__(self, name, starting_score=301, double_in=False, double_out=False):
+        """
+        Constructor (runs when creating a new player)
+
+        :param name: Player name (str)
+        :param starting_score: Initial score (int)
+        :param double_in: Double-in mode enabled (bool)
+        """
+        self.name = name
+        self.current_score = starting_score
+        self.doubleInVal = double_in
+        self.doubleOutVal = double_out
+
+    # ---------------------------------------------------
+    # GETTERS
+    # ---------------------------------------------------
 
     def getPlayerScore(self):
-        """
-        A regular method that can access instance attributes.
-        """
         return self.current_score
-    
-    def remScorePts(self, points):
-        """
-        A regular method that can access instance attributes.
-        """
-        self.current_score -= points
-        return
-    
-    def editScorePts(self, editedScore):
-        """
-        A regular method that can access instance attributes.
-        """
-        self.current_score = editedScore
-        return
-    
+
     def getDoubleInVal(self):
-        """
-        A regular method that can access instance attributes.
-        """
-        doubleInVal = self.doubleInVal
-        return doubleInVal   
+        return self.doubleInVal
     
+    def getDoubleOutVal(self):
+        return self.doubleOutVal
+
+    def getName(self):
+        return self.name
+
+    # ---------------------------------------------------
+    # SETTERS / MODIFIERS
+    # ---------------------------------------------------
+
+    def remScorePts(self, points):
+        self.current_score -= points
+
+    def editScorePts(self, editedScore):
+        self.current_score = editedScore
+
     def setDoubleInVal(self, newVal):
-        """
-        A regular method that can access instance attributes.
-        """
         self.doubleInVal = newVal
-        return  
+    
+    def setDoubleOutVal(self, newVal):
+        self.doubleOutVal = newVal
+
+    def setName(self, newName):
+        self.name = newName

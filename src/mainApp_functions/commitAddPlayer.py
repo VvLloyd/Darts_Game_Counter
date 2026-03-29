@@ -1,39 +1,86 @@
 from tkinter import *
+from classes.Player import Player
+
 
 def commitAddPlayer(mainApp):
-    playerName = mainApp.subWin.input_Name.get()
+    playerName = mainApp.subWin.input_Name.get().strip()
 
-    if playerName == "":
-        mainApp.subWin.errorStatus.configure(text="Vous devez entrer un nom... ")
+    if not playerName:
+        mainApp.subWin.errorStatus.configure(text="Vous devez entrer un nom...")
         return
 
-    if mainApp.match_inst.gameStarted == False:  # to do during the game setup, i.e., before starting.
+    # --------------------------------------------------
+    # BEFORE GAME START
+    # --------------------------------------------------
+    if not mainApp.match_inst.gameStarted:
 
         mainApp.button_gameStart.configure(state="normal", fg="#60ff30")
-        updateStatusLabeltext_1 = "Ajouter un deuxième joueur OU Cliquer Démarrer Partie!"
-        updateStatusLabeltext_2 = "Ajouter un troisième joueur OU Cliquer Démarrer Partie!"
-        updateStatusLabeltext_3 = "Ajouter un quatrième joueur OU Cliquer Démarrer Partie!"
-        updateStatusLabeltext_4 = "Cliquer Démarrer Partie!"
 
-        eval("mainApp.player_" + str(mainApp.match_inst.getNplayer() + 1) + "_label_1.config(state=NORMAL)")
-        eval("mainApp.player_" + str(mainApp.match_inst.getNplayer() + 1) + "_label_1.delete(0, END)")
-        eval("mainApp.player_" + str(mainApp.match_inst.getNplayer() + 1) + "_label_1.insert(0, playerName)")
-        eval("mainApp.player_" + str(mainApp.match_inst.getNplayer() + 1) + "_label_1.config(state=DISABLED, disabledforeground='yellow')")
-        eval("mainApp.frame_player_" + str(mainApp.match_inst.getNplayer() + 1) + ".config(relief='raised')")
+        status_messages = [
+            "Ajouter un deuxième joueur OU Cliquer Démarrer Partie!",
+            "Ajouter un troisième joueur OU Cliquer Démarrer Partie!",
+            "Ajouter un quatrième joueur OU Cliquer Démarrer Partie!",
+            "Cliquer Démarrer Partie!"
+        ]
 
+        player_index = mainApp.match_inst.getNplayer()  # 0-based
+
+        # Get widgets safely from lists
+        label = mainApp.player_name_labels[player_index]
+        frame = mainApp.player_frames_list[player_index]
+
+        # Update UI
+        label.config(state=NORMAL)
+        label.delete(0, END)
+        label.insert(0, playerName)
+        label.config(state=DISABLED, disabledforeground=mainApp.currentplayer_color)
+
+        frame.config(relief="raised")
+
+        # Update match model
         mainApp.match_inst.addNplayer()
-        eval("mainApp.updateStatusLabel(updateStatusLabeltext_" + str(mainApp.match_inst.getNplayer()) + ')'"")
+
+        new_count = mainApp.match_inst.getNplayer()
+        mainApp.updateStatusLabel(status_messages[new_count - 1])
+
+        # Create player correctly
+        new_player = Player(playerName)
+        mainApp.match_inst.addPlayer(new_player)
+
         mainApp.refreshImages()
 
-    if mainApp.match_inst.gameStarted == True:  # to do if the editname mode has been pressed.
-        currentPlayer = mainApp.match_inst.playerIndex[:1]
-        eval("mainApp.player_" + str(currentPlayer[0]) + "_label_1.config(state=NORMAL)")
-        eval("mainApp.player_" + str(currentPlayer[0]) + "_label_1.delete(0, END)")
-        eval("mainApp.player_" + str(currentPlayer[0]) + "_label_1.insert(0, playerName)")
-        eval("mainApp.player_" + str(currentPlayer[0]) + "_label_1.config(state=DISABLED)")
-        mainApp.button_commitScore.configure(state='disabled')
-        mainApp.button_editName.config(state='normal')
+    # --------------------------------------------------
+    # EDIT NAME MODE (GAME ALREADY STARTED)
+    # --------------------------------------------------
+    else:
+        currentPlayer = mainApp.match_inst.playerIndex[0] - 1
+
+        mainApp.match_inst.players[currentPlayer].name = playerName
+
+        label = mainApp.player_name_labels[currentPlayer]
+
+        label.config(state=NORMAL)
+        label.delete(0, END)
+        label.insert(0, playerName)
+        label.config(state=DISABLED)
+
+        mainApp.button_commitScore.configure(state="disabled")
+        mainApp.button_editName.configure(state="normal")
+
+        def get_team_color(player_id, n_players):
+            if n_players != 4:
+                return mainApp.currentplayer_color
+            if player_id in [0, 1]:
+                return mainApp.team_1_color
+            else:
+                return mainApp.team_2_color
+        
+        n_players = mainApp.match_inst.getNplayer()           
+        if n_players >= 4 :
+            for i in range(n_players):
+
+                # Update UI   
+                name_entry = mainApp.player_name_labels[i]
+                name_entry.config(state=NORMAL , fg=get_team_color(i, n_players))
 
     mainApp.destroySubWin()
-
-    return
