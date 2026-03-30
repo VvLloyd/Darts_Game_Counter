@@ -45,8 +45,8 @@ class mainApp:
         cS.commitScore(self)
         return
 
-    def writeCommitScore(self):
-        wCS.writeCommitScore(self)
+    def writeCommitScore(self, number='', player_id=None, event=None):
+        wCS.writeCommitScore(self, number, player_id, event)
         return
 
     def endTurn(self):

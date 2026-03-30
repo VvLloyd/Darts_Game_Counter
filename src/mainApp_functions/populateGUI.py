@@ -360,11 +360,12 @@ def populateGUI(self, master):
                     font=("Helvetica", 9),
                     bg=self.Button_bg_color,
                     fg=self.Button_ft_color,
-                    state=DISABLED,
-                    command=lambda t=text: self.clickPad(t),
+                    state=DISABLED,                                      
                     activebackground=self.activeButton_bg_color,
                     activeforeground=self.activeButton_ft_color
                 )
+
+                btn.bind("<Button-1>", lambda e, t=text, p=i: self.writeCommitScore(number=t, player_id=p, event=e))
 
                 # Button aligned to the right inside its column
                 btn.grid(row=4 + j, column=0, pady=1, sticky=W, columnspan=2)                
@@ -384,7 +385,7 @@ def populateGUI(self, master):
                         relief="solid",
                         bd=1,
                         bg=self.Button_bg_color2,
-                        fg="cyan"
+                        fg=self.checkbox_fg_color1
                     )
 
                     lbl.grid(

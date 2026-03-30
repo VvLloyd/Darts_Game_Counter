@@ -5,8 +5,9 @@ import os
 # The LOG function initializes a log and records all actions that occurred during the game.
 # Actions such as : EndTurn, Commit Score.
 
-# The recorded information is use for downstream functions such as calculating the player Average, High score, and more.
-# This log records also serve as the dataset for the undo/redo functions.
+# Notes; 
+# The recorded information could be use for downstream logics such as calculating the player Average, High score, and more.
+# This log records could also serve as the dataset for the undo/redo functions.
 
 def updateIndexLog(mainApp):
 

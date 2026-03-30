@@ -19,6 +19,8 @@ def initializeGUIvar(mainApp):
         mainApp.modeButtonDisable_bg_color = "#21453A"
         mainApp.modeButtonDisable_ft_color = "#D3DBE5"
 
+        mainApp.checkbox_fg_color1 = "#CAB812"
+        mainApp.checkbox_fg_color2 = "#59FF62"
         mainApp.Button_bg_color2 = "#1E332D"
 
         mainApp.team_1_color = "#129FE1"
