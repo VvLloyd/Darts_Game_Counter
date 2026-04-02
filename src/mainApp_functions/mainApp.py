@@ -73,8 +73,8 @@ class mainApp:
         cCP.clearClickPad(self)
         return
 
-    def updateIndexLog(self):
-        uIL.updateIndexLog(self)
+    def updateIndexLog(self, criquet_in=None, log_setting_change=None):
+        uIL.updateIndexLog(self, criquet_in=criquet_in, log_setting_change=log_setting_change)
         return
 
     def editScore(self):

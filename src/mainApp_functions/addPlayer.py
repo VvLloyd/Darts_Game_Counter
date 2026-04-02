@@ -12,7 +12,7 @@ def addPlayer(mainApp):
 
     # Distinguishing if editing the name or adding a new player...
     if mainApp.match_inst.editNameMode == True:
-        currentPlayer = mainApp.match_inst.playerIndex[0] # active player index
+        currentPlayer = mainApp.match_inst.playerIndex[0] # active player index        
     elif mainApp.match_inst.editNameMode == False:
         currentPlayer = mainApp.match_inst.getNplayer() + 1
 
@@ -53,6 +53,7 @@ def addPlayer(mainApp):
     mainApp.subWin.resizable(False, False)
 
     mainApp.subWin.bind("<Return>", lambda event: mainApp.commitAddPlayer())
-    mainApp.subWin.after(1, lambda: mainApp.subWin.input_Name.focus_force())
+    mainApp.subWin.after(1, lambda: mainApp.subWin.input_Name.focus_force()) 
+    
 
     return

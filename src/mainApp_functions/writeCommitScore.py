@@ -133,6 +133,8 @@ def writeCommitScore(mainApp, number='', player_id=None, event=None):
 
                     update_checkbox_colors(n_players, number)
                     dead_check(n_players, mode)
+
+                    mainApp.updateIndexLog(criquet_in="-✓ " + number)
                     return
 
         # Add mark if possible
@@ -145,6 +147,8 @@ def writeCommitScore(mainApp, number='', player_id=None, event=None):
                 update_checkbox_colors(n_players, number)
 
                 dead_check(n_players, mode)
+
+                mainApp.updateIndexLog(criquet_in="+✓ " + number)
                 return
 
         # SCORING LOGIC
@@ -165,6 +169,9 @@ def writeCommitScore(mainApp, number='', player_id=None, event=None):
                     score_entry.insert(0, str(current_score + number_value))
                     score_entry.config(state=DISABLED)
 
+                    # Special criquet_input to log score for both player of the same team
+                    mainApp.updateIndexLog(criquet_in=f"team-{teammate}-{str(current_score + number_value)}")
+
         elif mode == "cutthroat":
 
             opponents_not_closed = [
@@ -181,6 +188,9 @@ def writeCommitScore(mainApp, number='', player_id=None, event=None):
                 score_entry.insert(0, str(current_score + number_value))
                 score_entry.config(state=DISABLED)
 
+                # Special criquet_input to log score for both opponents
+                mainApp.updateIndexLog(criquet_in=f"cutthroat-{opponent}-{str(current_score + number_value)}")
+
         else:  # standard (2 players)
 
             opponent = 2 if player_id == 1 else 1
@@ -194,10 +204,10 @@ def writeCommitScore(mainApp, number='', player_id=None, event=None):
                 score_entry.insert(0, str(current_score + number_value))
                 score_entry.config(state=DISABLED)
 
-        # Dead Check
-        dead_check(n_players, mode)
+                mainApp.updateIndexLog()
 
-        mainApp.updateIndexLog()
+        # Dead Check
+        dead_check(n_players, mode)      
 
 
     return

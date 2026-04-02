@@ -35,6 +35,11 @@ def clickPad(mainApp, number):
     # -----------------------------------------
     if not mainApp.match_inst.editScoreMode:
 
+        mode = mainApp.match_inst.CommitGameMode[0] 
+        
+        if mode == 7: # Criquet
+            return 
+
         current = mainApp.input_Score.get()
 
         if len(current) < 3:

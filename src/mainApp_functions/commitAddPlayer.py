@@ -83,4 +83,7 @@ def commitAddPlayer(mainApp):
                 name_entry = mainApp.player_name_labels[i]
                 name_entry.config(state=NORMAL , fg=get_team_color(i, n_players))
 
+        if mainApp.match_inst.editNameMode == True:
+            mainApp.updateIndexLog(log_setting_change="edit_name") 
+
     mainApp.destroySubWin()
