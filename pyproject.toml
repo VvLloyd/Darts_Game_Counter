@@ -1,0 +1,67 @@
+[project]
+name = "dart_game_counter"
+description = "UI to track dart game scores for multiple players and game modes"
+classifiers = [
+    "License = Other/Proprietary License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+requires-python = ">=3.10
+dynamic = ["version"]
+dependencies = [
+    "pandas>=2.2.3",
+    "future>= 1.0.0",
+    "pillow>=11.0.0",
+    "numpy>=2.1.3",
+]
+
+[project.optional-dependencies]
+doc = [
+    "myst-parser",
+    "sphinx",
+    "sphinx-book-theme",
+    "sphinx-design",
+]
+dev = [
+    "pre-commit",
+    "black==23.3.0",
+    "flake8==6.0.0",
+    "isort==5.11.5",
+    "bandit>=1.7",
+    "pytest",
+    "pytest-cov",
+    "pytest=mock",
+    "tox",
+    "pip-tools",
+]
+
+build = [
+    "build",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = {attr = "dart_game_counter.__version__"}
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+#[tool.setuptools.package-data]
+#"dart_game_counter" = ["./other_scripts/*.pr]
+
+[project.scripts]
+dart_game_counter = "dart_game_counter.__main__:main"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "google"
