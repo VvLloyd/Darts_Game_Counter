@@ -31,3 +31,9 @@ python -m venv .venv
 python -m pip install --upgrade pip setuptools
 pip install -e .[dev]
 ```
+
+## to build
+
+```
+tox -e build
+```
