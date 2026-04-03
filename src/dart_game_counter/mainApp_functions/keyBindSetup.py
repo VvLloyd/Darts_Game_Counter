@@ -1,4 +1,5 @@
-from mainApp_functions import clickPad as cP, commitScore as cS, endTurn as eT
+from dart_game_counter.mainApp_functions import endTurn as eT
+from dart_game_counter.mainApp_functions import clickPad as cP, commitScore as cS
 
 def keyBindSetup(self, master):
     master.bind("1", lambda event: cP.clickPad(self, 1))

@@ -9,7 +9,7 @@
             "name": "Launch GUI",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}\\src\\__main__.py",
+            "program": "${workspaceFolder}/src/dart_game_counter/cli.py",
             "console": "integratedTerminal"
         }
     ]

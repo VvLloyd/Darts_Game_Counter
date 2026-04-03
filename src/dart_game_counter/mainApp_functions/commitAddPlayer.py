@@ -1,5 +1,5 @@
 from tkinter import *
-from classes.Player import Player
+from dart_game_counter.classes.Player import Player
 
 
 def commitAddPlayer(mainApp):

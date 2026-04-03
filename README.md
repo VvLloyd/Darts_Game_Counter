@@ -21,3 +21,13 @@ Download the full directory and launch the "run.py" to initialize the game.
 Will soon be releasing a version with additional Game modes, such as "Around the Clock", "Crickets", "BaseBall", "Chase the Dragon"
 
 enjoy!
+
+
+# For Developper
+
+```
+python -m venv .venv
+.venv\Scripts\activate
+python -m pip install --upgrade pip setuptools
+pip install -e .[dev]
+```

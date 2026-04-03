@@ -1,10 +1,7 @@
 from tkinter import *
 # import all Class methods as aliases, from the mainApps_functions directory;
-from mainApp_functions import DoubleIncheckChanged as DIcC, populateGUI as pGUI, initializeGUIvar, keyBindSetup as kBs, updateIndexLog as uIL, \
-    writeCommitScore as wCS, endTurn as eT, clickPad as cP, commitScore as cS, commitAddPlayer as cAP, updateStatusLabel as uSL, \
-    clearClickPad as cCP, startGame as sG, editScore as eS, addPlayer as aP, refreshImages as rI, editName as eN, \
-    destroySubWin as dSW, quitGame as qG, populateGModeGUI as popGMGUI, commitGameMode as cGM, selectedMode as sM, \
-    checkChangedDoubleIn as cCDI, checkChangedDoubleOut as cCDO
+from dart_game_counter.mainApp_functions import writeCommitScore as wCS
+from dart_game_counter.mainApp_functions import DoubleIncheckChanged as DIcC, addPlayer as aP, checkChangedDoubleIn as cCDI, checkChangedDoubleOut as cCDO, clearClickPad as cCP, clickPad as cP, commitAddPlayer as cAP, commitGameMode as cGM, commitScore as cS, destroySubWin as dSW, editName as eN, editScore as eS, endTurn as eT, initializeGUIvar, keyBindSetup as kBs, populateGModeGUI as popGMGUI, populateGUI as pGUI, quitGame as qG, refreshImages as rI, selectedMode as sM, startGame as sG, updateIndexLog as uIL, updateStatusLabel as uSL
 
 
 class mainApp:

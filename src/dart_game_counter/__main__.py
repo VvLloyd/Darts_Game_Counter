@@ -1,8 +1,8 @@
 from tkinter import *
-from classes.Match import Match
-import initializeWindow as initWin, consoleSetup as cS
+from dart_game_counter.classes.Match import Match
+import dart_game_counter.initializeWindow as initWin, dart_game_counter.consoleSetup as cS
 
-if __name__ == "__main__":
+def main():
     """
     This .py initialize the "tkinter" GUI with all its functionalities.
     This version only has one Class object: the mainApp Class. This Class contains all parameters (variables) and 

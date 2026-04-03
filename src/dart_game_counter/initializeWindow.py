@@ -1,4 +1,4 @@
-from mainApp_functions import mainApp
+from dart_game_counter.mainApp_functions import mainApp
 from tkinter import *
 
 def initializeWindow(match_inst):

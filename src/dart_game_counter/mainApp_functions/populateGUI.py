@@ -1,5 +1,5 @@
 from tkinter import *
-import centerWindow as cW
+import dart_game_counter.centerWindow as cW
 from PIL import ImageTk, Image
 
 def populateGUI(self, master):
