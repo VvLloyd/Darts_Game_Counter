@@ -47,7 +47,7 @@ def startGame(mainApp):
 
 
     mainApp.match_inst.playerIndex = [1, mainApp.match_inst.getNplayer()]
-    mainApp.updateIndexLog()
+    mainApp.updateIndexLog() 
 
     mainApp.match_inst.gameStarted = True
     mainApp.match_inst.currentGameTurn = 1

@@ -19,17 +19,31 @@ def updateIndexLog(mainApp, criquet_in=None, log_setting_change=None):
     # If the game is not started, create the IndexLog with all added players
         # get Current Player turn over the total nb of player.
 
-
     if mainApp.match_inst.gameStarted == False:  # if the game is not started
         
         # Store game start time
         mainApp.match_inst.game_start_time = datetime.now()   
         mainApp.match_inst.log_setting_changes = []
-        
-        totalPlayer = mainApp.match_inst.playerIndex[1:] #get number of players
-        mainApp.turnIndexLog = pd.DataFrame([[0, 0, 1]], columns=['index', 'gameTurn', 'playerTurn']) # create first default columns
 
+        mode = mainApp.match_inst.CommitGameMode[0]
+
+        if mode in (1, 2):
+            game_modes = {1: "301", 2: "501"}
+            mainApp.match_inst.log_setting_changes.append(f"Game Mode: {game_modes[mode]}")
+            mainApp.match_inst.log_setting_changes.append(f"DoubleIn: {'ON' if mainApp.match_inst.doubleInMode else 'OFF'}")
+            mainApp.match_inst.log_setting_changes.append(f"DoubleOut: {'ON' if mainApp.match_inst.doubleOutMode else 'OFF'}")
+
+        elif mode == 7:
+            n_players = mainApp.match_inst.getNplayer()
+            c_mode = "cutthroat" if n_players == 3 else "team" if n_players == 4 else "standard"
+            mainApp.match_inst.log_setting_changes.append(f"Game Mode: Criquet - {c_mode}") 
+            
+            totalPlayer = mainApp.match_inst.playerIndex[1:] #get number of players
+            mainApp.turnIndexLog = pd.DataFrame([[0, 0, 1]], columns=['index', 'gameTurn', 'playerTurn']) # create first default columns
+        
         for i in range(totalPlayer[0]): # add all columns needed for the match
+            
+            mainApp.match_inst.log_setting_changes.append(f"P_{i+1} name: {mainApp.match_inst.players[i].name}")
 
             CommittedScoreToLog = mainApp.player_labels_dict[i+1]['score'].get()
             
@@ -43,8 +57,6 @@ def updateIndexLog(mainApp, criquet_in=None, log_setting_change=None):
     #-------------------------------------------------------------------------------------------------------------------
     # If the game is started, add the committed score, record the endturn for the current player
     if mainApp.match_inst.gameStarted: #if the game is started
-
-        # DO A BUNCH OF CHECKS AND CHANGES ON VARIABLES DEPENDING OF THE SITUATION
 
         # Extract information that is needed before logging
         mainApp.match_inst.logIndex += 1 # The log index event increase. (refer to initializeGUIvar for parameters)
@@ -75,7 +87,7 @@ def updateIndexLog(mainApp, criquet_in=None, log_setting_change=None):
         CommittedScoreToLog = mainApp.player_labels_dict[currentPlayer[0]]['score'].get()
 
         # if setting changed, add the log into the static log header
-        if log_setting_change is not None:
+        if log_setting_change is not None:                
             if log_setting_change in "edit_name":
                 mainApp.match_inst.log_setting_changes.append(f"Event: {log_setting_change} , Player {currentPlayer[0]}, at index: {currentIndex-1}, new name is: {mainApp.match_inst.players[currentPlayer[0]-1].name}")
             elif log_setting_change in "edit_score":
@@ -187,14 +199,28 @@ def updateIndexLog(mainApp, criquet_in=None, log_setting_change=None):
 
         combined_df = pd.concat([player_names_df, mainApp.turnIndexLog], ignore_index=True)
                
-        header = mainApp.match_inst.game_start_time.strftime("Game played on %Y-%m-%d at %H:%M:%S")
+        startingtime = mainApp.match_inst.game_start_time.strftime("Game played on %Y-%m-%d at %H:%M:%S")
 
         os.system('cls' if os.name == 'nt' else 'clear')
 
-        print(header)
+        total_length = sum(len(col) for col in combined_df.columns) + (len(combined_df.columns) - 1)
+
+        # Text you want in the middle
+        title = "> GAME SUMMARY <"
+
+        # Compute how many '=' go on each side
+        side_length = (total_length - len(title)) // 2
+        # Handle odd length by adding one more '=' on the right if needed
+        line = "=" * side_length + title + "=" * (total_length - len(title) - side_length)
+        
+        print(line)
+        print(startingtime)
         for row in mainApp.match_inst.log_setting_changes:
             print(row)
-        print("=" * len(header))  # nice underline
+
+        # Select the first row        
+        print("=" * total_length)  # nice underline
+
         print(combined_df.to_string(index=False))
 
         return

@@ -47,7 +47,6 @@ def writeCommitScore(mainApp, number='', player_id=None, event=None):
             number_value = int(number)
 
         n_players = mainApp.match_inst.getNplayer()
-        #player_id = currentPlayer + 1
 
         # Mode detection
         if n_players == 3:
