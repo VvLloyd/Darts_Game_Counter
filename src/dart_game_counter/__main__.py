@@ -11,7 +11,7 @@ def main():
     """
 
     quitbuttonPressed = False
-    gamemode = [7, False, False]
+    gamemode = [1, True, False]
 
     def on_closing():
         tk_layer.destroy()

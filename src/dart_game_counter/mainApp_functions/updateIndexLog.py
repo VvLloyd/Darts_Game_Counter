@@ -30,7 +30,7 @@ def updateIndexLog(mainApp, criquet_in=None, log_setting_change=None):
         if mode in (1, 2):
             game_modes = {1: "301", 2: "501"}
             mainApp.match_inst.log_setting_changes.append(f"Game Mode: {game_modes[mode]}")
-            mainApp.match_inst.log_setting_changes.append(f"DoubleIn: {'ON' if mainApp.match_inst.doubleInMode else 'OFF'}")
+            mainApp.match_inst.log_setting_changes.append(f"DoubleIn: {' ON' if mainApp.match_inst.doubleInMode else 'OFF'}")
             mainApp.match_inst.log_setting_changes.append(f"DoubleOut: {'ON' if mainApp.match_inst.doubleOutMode else 'OFF'}")
 
         elif mode == 7:
@@ -38,8 +38,8 @@ def updateIndexLog(mainApp, criquet_in=None, log_setting_change=None):
             c_mode = "cutthroat" if n_players == 3 else "team" if n_players == 4 else "standard"
             mainApp.match_inst.log_setting_changes.append(f"Game Mode: Criquet - {c_mode}") 
             
-            totalPlayer = mainApp.match_inst.playerIndex[1:] #get number of players
-            mainApp.turnIndexLog = pd.DataFrame([[0, 0, 1]], columns=['index', 'gameTurn', 'playerTurn']) # create first default columns
+        totalPlayer = mainApp.match_inst.playerIndex[1:] #get number of players
+        mainApp.turnIndexLog = pd.DataFrame([[0, 0, 1]], columns=['index', 'gameTurn', 'playerTurn']) # create first default columns
         
         for i in range(totalPlayer[0]): # add all columns needed for the match
             
