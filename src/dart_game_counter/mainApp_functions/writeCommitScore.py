@@ -133,7 +133,7 @@ def writeCommitScore(mainApp, number='', player_id=None, event=None):
                     update_checkbox_colors(n_players, number)
                     dead_check(n_players, mode)
 
-                    mainApp.updateIndexLog(criquet_in="-✓ " + number)
+                    mainApp.updateIndexLog(criquet_in="-√ " + number)
                     return
 
         # Add mark if possible
@@ -147,7 +147,7 @@ def writeCommitScore(mainApp, number='', player_id=None, event=None):
 
                 dead_check(n_players, mode)
 
-                mainApp.updateIndexLog(criquet_in="+✓ " + number)
+                mainApp.updateIndexLog(criquet_in="+√ " + number)
                 return
 
         # SCORING LOGIC
