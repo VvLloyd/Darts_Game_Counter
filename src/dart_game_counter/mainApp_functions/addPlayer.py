@@ -19,11 +19,11 @@ def addPlayer(mainApp):
     # Populate all sub-GUI widgets
     mainApp.subWin.emptylabel_1 = Label(mainApp.subWin, padx=10, pady=10, bg=mainApp.Button_bg_color)
     mainApp.subWin.emptylabel_2 = Label(mainApp.subWin, padx=10, pady=2, bg=mainApp.Button_bg_color)
-    mainApp.subWin.emptylabel_3 = Label(mainApp.subWin, text="Entrer le Nom du Joueur #%s" % (currentPlayer),
+    mainApp.subWin.emptylabel_3 = Label(mainApp.subWin, text="Entrer le nom du joueur #%s" % (currentPlayer),
                                            font=("Helvetica", 12), bg=mainApp.Button_bg_color,
                                            fg=mainApp.Button_ft_color)
 
-    mainApp.subWin.errorStatus = Label(mainApp.subWin, text="", bg=mainApp.Button_bg_color, fg="cyan")
+    mainApp.subWin.errorStatus = Label(mainApp.subWin, text="", bg=mainApp.Button_bg_color, fg=mainApp.Button_status_ft_color)
     mainApp.subWin.input_Name = Entry(mainApp.subWin, width=20, bg='black', fg=mainApp.currentplayer_color, borderwidth=3,
                                          font=("Helvetica", 16), justify='center')
 

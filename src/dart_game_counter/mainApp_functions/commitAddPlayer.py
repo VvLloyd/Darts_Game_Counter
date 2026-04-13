@@ -14,13 +14,13 @@ def commitAddPlayer(mainApp):
     # --------------------------------------------------
     if not mainApp.match_inst.gameStarted:
 
-        mainApp.button_gameStart.configure(state="normal", fg="#60ff30")
+        mainApp.button_gameStart.configure(state="normal", fg=mainApp.Button_game_start_ft_color)
 
         status_messages = [
-            "Ajouter un deuxième joueur OU Cliquer Démarrer Partie!",
-            "Ajouter un troisième joueur OU Cliquer Démarrer Partie!",
-            "Ajouter un quatrième joueur OU Cliquer Démarrer Partie!",
-            "Cliquer Démarrer Partie!"
+            "Ajouter un deuxième joueur OU cliquer démarrer partie!",
+            "Ajouter un troisième joueur OU cliquer démarrer partie!",
+            "Ajouter un quatrième joueur OU cliquer démarrer partie!",
+            "Cliquer démarrer partie!"
         ]
 
         player_index = mainApp.match_inst.getNplayer()  # 0-based

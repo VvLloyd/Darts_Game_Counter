@@ -2,19 +2,135 @@ from tkinter import *
 import dart_game_counter.centerWindow as cW
 from PIL import ImageTk, Image
 
+def apply_texture(panel, image_path):
+    canvas = Canvas(panel, highlightthickness=0)
+    canvas.pack(fill="both", expand=True)
+
+    img = Image.open(image_path)
+    tile = ImageTk.PhotoImage(img)
+
+    # Keep reference (VERY important in Tkinter)
+    panel._bg_tile = tile
+
+    def draw(event):
+        canvas.delete("all")
+        w = event.width
+        h = event.height
+        img_w = tile.width()
+        img_h = tile.height()
+
+        for x in range(0, w, img_w):
+            for y in range(0, h, img_h):
+                canvas.create_image(x, y, image=tile, anchor="nw")
+
+    canvas.bind("<Configure>", draw)
+
 def populateGUI(self, master):
     master.configure(bg=self.Button_bg_color)
     master.title("Score Board")
-    master.geometry("1080x880")
-    master.resizable(False, False)
+    master.state("zoomed")
     master.iconbitmap("./data/images/dart_icon.ico")
+
+    # Make root expandable
+    master.grid_rowconfigure(0, weight=1)
+    master.grid_columnconfigure(0, weight=1)
+
+    # Outer frame
+    self.outer_frame = Frame(master, bg=self.Button_bg_color)
+    self.outer_frame.grid(row=0, column=0, sticky="nsew")
+
+    # 🔑 3x3 grid setup
+    for i in range(3):
+        self.outer_frame.grid_rowconfigure(i, weight=1)
+        self.outer_frame.grid_columnconfigure(i, weight=1)
+
+    # Center should NOT expand
+    self.outer_frame.grid_rowconfigure(1, weight=0)
+    self.outer_frame.grid_columnconfigure(1, weight=0)
+
+    panel_color = "#121212"
+
+    # ---------------------------
+    # CORNER PANELS (FIXED)
+    # ---------------------------
+    self.top_left_panel = Frame(self.outer_frame, bg=panel_color)
+    self.top_left_panel.grid(row=0, column=0, sticky="nsew")
+
+    self.top_right_panel = Frame(self.outer_frame, bg=panel_color)
+    self.top_right_panel.grid(row=0, column=2, sticky="nsew")
+
+    self.bottom_left_panel = Frame(self.outer_frame, bg=panel_color)
+    self.bottom_left_panel.grid(row=2, column=0, sticky="nsew")
+
+    self.bottom_right_panel = Frame(self.outer_frame, bg=panel_color)
+    self.bottom_right_panel.grid(row=2, column=2, sticky="nsew")
+
+    # ---------------------------
+    # TOP PANEL
+    # ---------------------------
+    self.top_panel = Frame(self.outer_frame, bg=panel_color)
+    self.top_panel.grid(row=0, column=1, sticky="nsew")
+
+    # ---------------------------
+    # BOTTOM PANEL
+    # ---------------------------
+    self.bottom_panel = Frame(self.outer_frame, bg=panel_color)
+    self.bottom_panel.grid(row=2, column=1, sticky="nsew")
+
+    # ---------------------------
+    # LEFT PANEL
+    # ---------------------------
+    self.left_panel = Frame(self.outer_frame, bg=panel_color)
+    self.left_panel.grid(row=1, column=0, sticky="nsew")
+
+    # ---------------------------
+    # RIGHT PANEL
+    # ---------------------------
+    self.right_panel = Frame(self.outer_frame, bg=panel_color)
+    self.right_panel.grid(row=1, column=2, sticky="nsew")
+
+    # ---------------------------
+    # CENTER FRAME (your fixed UI)
+    # ---------------------------
+    self.center_frame = Frame(
+        self.outer_frame,
+        width=1080,
+        height=880,
+        bg=self.Button_bg_color
+    )
+    self.center_frame.grid(row=1, column=1)
+
+    # 🔑 Prevent resizing
+    self.center_frame.grid_propagate(False)
+
+    # ---------------------------
+    # APPLY TEXTURE EVERYWHERE
+    # ---------------------------
+    texture_path = self.textured_path
+
+    panels = [
+        self.left_panel,
+        self.right_panel,
+        self.top_panel,
+        self.bottom_panel,
+        self.top_left_panel,
+        self.top_right_panel,
+        self.bottom_left_panel,
+        self.bottom_right_panel
+    ]
+
+    for panel in panels:
+        apply_texture(panel, texture_path)
+                
     cW.centerWindow(master)
 
     # --------------------------------------------------------------------------------------------------------------
     #   Create Frames for the UI Layout
     # --------------------------------------------------------------------------------------------------------------
-    self.BackgroundFrame = LabelFrame(master, padx=5, pady=5, bg=self.Button_bg_color)
+    #self.BackgroundFrame = LabelFrame(master, padx=5, pady=5, bg=self.Button_bg_color)
+    self.BackgroundFrame = LabelFrame(self.center_frame, padx=5, pady=5, bg=self.Button_bg_color)
     self.BackgroundFrame.grid(row=0, column=0, sticky=NSEW)
+    self.BackgroundFrame.config(relief="raised")
 
     # Add player button frame
     self.frame0 = LabelFrame(self.BackgroundFrame, padx=5, pady=5, bg=self.Button_bg_color)
@@ -401,9 +517,9 @@ def populateGUI(self, master):
     # ---------------------------------------------------------------------------------------------------------------
     # CREATING STATUS
     # ---------------------------------------------------------------------------------------------------------------
-    self.StatusLabel = Label(self.emptylabel0, padx=1, pady=20, text="Ajoutez au moins un Joueur!",
+    self.StatusLabel = Label(self.emptylabel0, padx=1, pady=20, text="Ajoutez au moins un joueur!",
                              font=("Helvetica", 12), bg=self.Button_bg_color,
-                             fg="cyan")
+                             fg=self.Button_status_ft_color)
     self.StatusLabel.grid(row=0, column=0)
 
     # ---------------------------------------------------------------------------------------------------------------
