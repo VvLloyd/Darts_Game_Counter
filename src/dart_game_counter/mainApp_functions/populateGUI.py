@@ -174,104 +174,104 @@ def populateGUI(self, master):
 
     # Define buttons
     # Clickpad
-    self.button_0 = Button(self.frame1, text="0", padx=40, pady=20, font=("Helvetica", 25), bg=self.Button_bg_color,
+    self.button_0 = Button(self.frame1, text="0", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(0),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_1 = Button(self.frame1, text="1", padx=40, pady=20, font=("Helvetica", 25), bg=self.Button_bg_color,
+    self.button_1 = Button(self.frame1, text="1", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(1),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_2 = Button(self.frame1, text="2", padx=40, pady=20, font=("Helvetica", 25), bg=self.Button_bg_color,
+    self.button_2 = Button(self.frame1, text="2", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(2),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_3 = Button(self.frame1, text="3", padx=40, pady=20, font=("Helvetica", 25), bg=self.Button_bg_color,
+    self.button_3 = Button(self.frame1, text="3", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(3),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_4 = Button(self.frame1, text="4", padx=40, pady=20, font=("Helvetica", 25), bg=self.Button_bg_color,
+    self.button_4 = Button(self.frame1, text="4", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(4),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_5 = Button(self.frame1, text="5", padx=40, pady=20, font=("Helvetica", 25), bg=self.Button_bg_color,
+    self.button_5 = Button(self.frame1, text="5", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(5),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_6 = Button(self.frame1, text="6", padx=40, pady=20, font=("Helvetica", 25), bg=self.Button_bg_color,
+    self.button_6 = Button(self.frame1, text="6", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(6),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_7 = Button(self.frame1, text="7", padx=40, pady=20, font=("Helvetica", 25), bg=self.Button_bg_color,
+    self.button_7 = Button(self.frame1, text="7", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(7),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_8 = Button(self.frame1, text="8", padx=40, pady=20, font=("Helvetica", 25), bg=self.Button_bg_color,
+    self.button_8 = Button(self.frame1, text="8", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(8),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_9 = Button(self.frame1, text="9", padx=40, pady=20, font=("Helvetica", 25), bg=self.Button_bg_color,
+    self.button_9 = Button(self.frame1, text="9", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(9),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
 
     # Commit Score
-    self.button_commitScore = Button(self.frame1, text="Soumettre", padx=100, pady=20, font=("Helvetica", 25),
+    self.button_commitScore = Button(self.frame1, text="Soumettre", padx=100, pady=20, font=(self.font, 25),
                                      bg=self.Button_bg_color, fg=self.currentplayer_color, command=self.commitScore,
                                      activebackground=self.activeButton_bg_color,
                                      activeforeground=self.activeButton_ft_color,
                                      state="disabled")
 
-    self.button_clear = Button(self.frame1, text="C", padx=99.49999, pady=20, font=("Helvetica", 25),
+    self.button_clear = Button(self.frame1, text="C", padx=99.49999, pady=20, font=(self.font, 25),
                                bg=self.Button_bg_color, fg=self.Button_ft_color, command=self.clearClickPad,
                                activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_addPlayer = Button(self.frame0, text="Ajouter Joueur", padx=35, pady=3, font=("Helvetica", 12),
+    self.button_addPlayer = Button(self.frame0, text="Ajouter Joueur", padx=35, pady=3, font=(self.font, 12),
                                    bg=self.Button_bg_color, fg=self.Button_ft_color, command=self.addPlayer,
                                    activebackground=self.activeButton_bg_color,
                                    activeforeground=self.activeButton_ft_color)
 
-    self.button_gameMode = Button(self.frame0, text="Mode de Jeu", padx=35, pady=3, font=("Helvetica", 12),
+    self.button_gameMode = Button(self.frame0, text="Mode de Jeu", padx=35, pady=3, font=(self.font, 12),
                                   bg=self.Button_bg_color, fg=self.Button_ft_color, state='normal',
                                   command=lambda: self.populateGModeGUI(master),
                                   activebackground=self.activeButton_bg_color,
                                   activeforeground=self.activeButton_ft_color)
 
-    self.button_editScore = Button(self.frame0, text="Modifier Pointage", padx=20, pady=3, font=("Helvetica", 12),
+    self.button_editScore = Button(self.frame0, text="Modifier Pointage", padx=20, pady=3, font=(self.font, 12),
                                    bg=self.Button_bg_color, fg=self.Button_ft_color, command=self.editScore,
                                    activebackground=self.activeButton_bg_color,
                                    activeforeground=self.activeButton_ft_color,
                                    state="disabled")
 
-    self.button_editName = Button(self.frame0, text="Renommer Joueur", padx=20, pady=3, font=("Helvetica", 12),
+    self.button_editName = Button(self.frame0, text="Renommer Joueur", padx=20, pady=3, font=(self.font, 12),
                                   bg=self.Button_bg_color, fg=self.Button_ft_color, state=DISABLED,
                                   command=self.editName,
                                   activebackground=self.activeButton_bg_color,
                                   activeforeground=self.activeButton_ft_color)
 
     self.button_gameStart = Button(self.frame9, text="Démarrer Partie!", padx=40, pady=5,
-                                   font=("Helvetica", 14, "bold"),
+                                   font=(self.font, 14, "bold"),
                                    bg=self.Button_bg_color, fg=self.Button_ft_color, command=self.startGame,
                                    activebackground=self.activeButton_bg_color,
                                    activeforeground=self.activeButton_ft_color, state="disabled")
 
-    self.button_endTurn = Button(self.frame7, text="Tour terminé", padx=40, pady=5, font=("Helvetica", 12),
+    self.button_endTurn = Button(self.frame7, text="Tour terminé", padx=40, pady=5, font=(self.font, 12),
                                  bg=self.Button_bg_color, fg=self.Button_ft_color,
                                  command=self.endTurn, state="disabled",
                                  activebackground=self.activeButton_bg_color,
                                  activeforeground=self.activeButton_ft_color)
 
-    # self.button_goBack = Button(master, text="<<", padx=5, pady=1, font=("Helvetica", 10),
+    # self.button_goBack = Button(master, text="<<", padx=5, pady=1, font=(mainApp.font, 10),
     #                           bg=self.Button_bg_color, fg=self.Button_ft_color, state="normal", relief="groove",
     #                          activebackground=self.activeButton_bg_color,
     #                         activeforeground=self.activeButton_ft_color)
 
-    # self.button_forward = Button(master, text=">>", padx=5, pady=1, font=("Helvetica", 10),
+    # self.button_forward = Button(master, text=">>", padx=5, pady=1, font=(mainApp.font, 10),
     #                            bg=self.Button_bg_color, fg=self.Button_ft_color, state="normal", relief="groove",
     #                           activebackground=self.activeButton_bg_color,
     #                          activeforeground=self.activeButton_ft_color)
 
-    self.button_quit = Button(self.BackgroundFrame, text="Quitter", padx=40, pady=5, font=("Helvetica", 12),
+    self.button_quit = Button(self.BackgroundFrame, text="Quitter", padx=40, pady=5, font=(self.font, 12),
                               bg=self.Button_bg_color, fg=self.Button_ft_color,
                               activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color,
                               command=lambda: self.quitGame(master))
@@ -279,7 +279,7 @@ def populateGUI(self, master):
     # Warning: The restartBoard kills the window without changing the status of the quitGamePressed variable in the run.py.
     # This will cause the while loop to restart again.
     self.button_restartBoard = Button(self.BackgroundFrame, text="Réinitialiser Jeu", padx=40, pady=5,
-                                      font=("Helvetica", 12),
+                                      font=(self.font, 12),
                                       bg=self.Button_bg_color, fg=self.Button_ft_color, command=master.quit,
                                       state=NORMAL,
                                       activebackground=self.activeButton_bg_color,
@@ -314,7 +314,7 @@ def populateGUI(self, master):
     # CREATING ENTRY BOXES
     # ---------------------------------------------------------------------------------------------------------------
     # Create Score Entry box
-    self.input_Score = Entry(self.frame2, width=5, bg='black', fg=self.currentplayer_color, borderwidth=3, font=("Helvetica", 50),
+    self.input_Score = Entry(self.frame2, width=5, bg='black', fg=self.currentplayer_color, borderwidth=3, font=(self.font, 50),
                              justify='center', disabledbackground='black', disabledforeground=self.currentplayer_color,
                              state=DISABLED)
     self.input_Score.grid(row=0, column=0, columnspan=3) 
@@ -386,19 +386,19 @@ def populateGUI(self, master):
         self.player_labels_dict[i] = {}
 
         # Name entry
-        name_entry = create_entry(frame, 16, ("Helvetica", 14))
+        name_entry = create_entry(frame, 16, (self.font, 14))
         setup_entry(name_entry, 0, 0, f"Ajoutez le Joueur #{i}", columnspan=3)
         self.player_labels_dict[i]['name'] = name_entry
         self.player_name_labels.append(name_entry)
 
         # AVR and HighScore entries
-        avr_entry = create_entry(frame, 10, ("Helvetica", 8), justify='right')
-        highscore_entry = create_entry(frame, 15, ("Helvetica", 8), justify='right')
+        avr_entry = create_entry(frame, 10, (self.font, 8), justify='right')
+        highscore_entry = create_entry(frame, 15, (self.font, 8), justify='right')
         self.player_labels_dict[i]['avr'] = avr_entry
         self.player_labels_dict[i]['highscore'] = highscore_entry
 
         # Score entry (big number) keeps black border
-        score_entry = create_entry(frame, 6, ("Helvetica", 25), borderwidth=1, border_zero=False)
+        score_entry = create_entry(frame, 6, (self.font, 25), borderwidth=1, border_zero=False)
         self.player_labels_dict[i]['score'] = score_entry
         self.player_score_labels.append(score_entry)
         
@@ -428,7 +428,7 @@ def populateGUI(self, master):
                 checkbox.grid(row=3, column=2, pady=0, sticky=E)
                 self.player_labels_dict[i]['doubleIn_checkbox'] = checkbox
 
-                double_in_label = create_entry(frame, 0, ("Helvetica", 8), justify='right')
+                double_in_label = create_entry(frame, 0, (self.font, 8), justify='right')
                 setup_entry(double_in_label, 3, 1, "Double In: ", sticky=E)
                 self.player_labels_dict[i]['double_in'] = double_in_label
 
@@ -439,7 +439,7 @@ def populateGUI(self, master):
        # ---------- Mode 7 ----------
         elif mode == 7:
 
-            self.player_labels_dict[i]['score'].config(font=("Helvetica", 18))
+            self.player_labels_dict[i]['score'].config(font=(self.font, 18))
 
             self.player_labels_dict[i]['name'].grid_configure(columnspan=5)
 
@@ -473,7 +473,7 @@ def populateGUI(self, master):
                     text=text,
                     width=12,
                     pady=-60,
-                    font=("Helvetica", 9),
+                    font=(self.font, 9),
                     bg=self.Button_bg_color,
                     fg=self.Button_ft_color,
                     state=DISABLED,                                      
@@ -497,7 +497,7 @@ def populateGUI(self, master):
                         #text="✓",
                         width=2,
                         height=1,
-                        font=("Helvetica", 10),
+                        font=(self.font, 10),
                         relief="solid",
                         bd=1,
                         bg=self.Button_bg_color2,
@@ -518,7 +518,7 @@ def populateGUI(self, master):
     # CREATING STATUS
     # ---------------------------------------------------------------------------------------------------------------
     self.StatusLabel = Label(self.emptylabel0, padx=1, pady=20, text="Ajoutez au moins un joueur!",
-                             font=("Helvetica", 12), bg=self.Button_bg_color,
+                             font=(self.font, 12), bg=self.Button_bg_color,
                              fg=self.Button_status_ft_color)
     self.StatusLabel.grid(row=0, column=0)
 
@@ -535,7 +535,7 @@ def populateGUI(self, master):
     # SOFTWARE VERSION LABEL
     # ---------------------------------------------------------------------------------------------------------------
     self.softVersionLabel = Label(self.BackgroundFrame, padx=1, pady=1, text=self.softVersion,
-                                  font=("Helvetica", "12", "italic"), bg=self.Button_bg_color,
+                                  font=(self.font, "12", "italic"), bg=self.Button_bg_color,
                                   fg="black")
 
     self.softVersionLabel.grid(row=13, column=0, rowspan=2, sticky="SW")

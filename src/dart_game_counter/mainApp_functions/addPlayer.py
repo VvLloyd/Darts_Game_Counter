@@ -20,21 +20,21 @@ def addPlayer(mainApp):
     mainApp.subWin.emptylabel_1 = Label(mainApp.subWin, padx=10, pady=10, bg=mainApp.Button_bg_color)
     mainApp.subWin.emptylabel_2 = Label(mainApp.subWin, padx=10, pady=2, bg=mainApp.Button_bg_color)
     mainApp.subWin.emptylabel_3 = Label(mainApp.subWin, text="Entrer le nom du joueur #%s" % (currentPlayer),
-                                           font=("Helvetica", 12), bg=mainApp.Button_bg_color,
+                                           font=(mainApp.font, 12), bg=mainApp.Button_bg_color,
                                            fg=mainApp.Button_ft_color)
 
     mainApp.subWin.errorStatus = Label(mainApp.subWin, text="", bg=mainApp.Button_bg_color, fg=mainApp.Button_status_ft_color)
     mainApp.subWin.input_Name = Entry(mainApp.subWin, width=20, bg='black', fg=mainApp.currentplayer_color, borderwidth=3,
-                                         font=("Helvetica", 16), justify='center')
+                                         font=(mainApp.font, 16), justify='center')
 
     mainApp.subWin.button_commitAddPlayer = Button(mainApp.subWin, text="Enregistrer", padx=10, pady=5,
-                                                      font=("Helvetica", 12), bg=mainApp.Button_bg_color,
+                                                      font=(mainApp.font, 12), bg=mainApp.Button_bg_color,
                                                       fg=mainApp.currentplayer_color, command=mainApp.commitAddPlayer,
                                                       activebackground=mainApp.activeButton_bg_color,
                                                       activeforeground=mainApp.activeButton_ft_color)
 
     mainApp.subWin.button_cancel = Button(mainApp.subWin, text="Annuler", padx=10, pady=5,
-                                             font=("Helvetica", 12), bg=mainApp.Button_bg_color,
+                                             font=(mainApp.font, 12), bg=mainApp.Button_bg_color,
                                              fg=mainApp.Button_ft_color,
                                              activebackground=mainApp.activeButton_bg_color,
                                              activeforeground=mainApp.activeButton_ft_color,

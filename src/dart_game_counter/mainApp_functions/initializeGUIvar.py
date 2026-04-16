@@ -3,7 +3,9 @@ Since all methods use the mainApp Object as an input/output, it is a lazy effect
 
 def initializeGUIvar(mainApp):
     mainApp.softVersion = "ver 2.0.0"
-    mainApp.colorTheme = "Dark"
+    mainApp.colorTheme = "default"
+    #mainApp.font = 'Consolas'
+    mainApp.font = 'Fixedsys'
     # Visual Stuff. These are used in the Populate GUI methods:
     if mainApp.colorTheme == "default":
         mainApp.Button_bg_color = "#21453A"

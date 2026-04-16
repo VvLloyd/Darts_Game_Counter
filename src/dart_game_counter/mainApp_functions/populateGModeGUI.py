@@ -24,11 +24,11 @@ def populateGModeGUI(mainApp, master):
     # Radiobuttons
     #----------------------------------------------------------------------------------------------------------------
     mainApp.subWin.mode_var = IntVar(mainApp.subWin)
-    mainApp.subWin.mode1 = Radiobutton(mainApp.subWin.emptylabel_1, indicatoron=0, text="Standard: 301", font=("Helvetica", 14), anchor='center',
+    mainApp.subWin.mode1 = Radiobutton(mainApp.subWin.emptylabel_1, indicatoron=0, text="Standard: 301", font=(mainApp.font, 14), anchor='center',
                                           width=27, pady=5, bg=mainApp.Button_bg_color, activebackground=mainApp.activeButton_bg_color, selectcolor = mainApp.activeButton_bg_color,
                                           fg=mainApp.modeButton_ft_color, variable=mode, value=1, command=lambda: mainApp.selectedMode(1, double_in, double_out))
 
-    mainApp.subWin.mode2 = Radiobutton(mainApp.subWin.emptylabel_1, indicatoron=0, text="Standard: 501", font=("Helvetica", 14), anchor='center',
+    mainApp.subWin.mode2 = Radiobutton(mainApp.subWin.emptylabel_1, indicatoron=0, text="Standard: 501", font=(mainApp.font, 14), anchor='center',
                                           width=27, pady=5, bg=mainApp.Button_bg_color, activebackground=mainApp.activeButton_bg_color, selectcolor = mainApp.activeButton_bg_color,
                                           fg=mainApp.modeButton_ft_color, variable=mode, value=2, command=lambda: mainApp.selectedMode(2, double_in, double_out))
 
@@ -92,34 +92,34 @@ def populateGModeGUI(mainApp, master):
         mainApp.subWin.DoubleOut_OFF.configure(fg='black')
 
     mainApp.subWin.DoubleInLabel = Entry(mainApp.subWin.emptylabel_1, bg=mainApp.modeButton_bg_color, fg="grey", width=15,
-                                            font=("Helvetica", 12), justify='right', disabledbackground=mainApp.modeButton_bg_color,
+                                            font=(mainApp.font, 12), justify='right', disabledbackground=mainApp.modeButton_bg_color,
                                             disabledforeground= mainApp.disabledButton_ft_color, border=0)
     mainApp.subWin.DoubleInLabel.insert(0, "Double-In Mode: ")
     mainApp.subWin.DoubleInLabel.config(state=DISABLED)
 
     mainApp.subWin.DoubleOutLabel = Entry(mainApp.subWin.emptylabel_1, bg=mainApp.modeButton_bg_color, fg="grey", width=15,
-                                            font=("Helvetica", 12), justify='right', disabledbackground=mainApp.modeButton_bg_color,
+                                            font=(mainApp.font, 12), justify='right', disabledbackground=mainApp.modeButton_bg_color,
                                             disabledforeground= mainApp.disabledButton_ft_color, border=0)
     mainApp.subWin.DoubleOutLabel.insert(0, "Double-Out Mode: ")
     mainApp.subWin.DoubleOutLabel.config(state=DISABLED)
 
-    mainApp.subWin.mode3 = Radiobutton(mainApp.subWin.emptylabel_2, indicatoron=0, text="Around the Clock", font=("Helvetica", 14),
+    mainApp.subWin.mode3 = Radiobutton(mainApp.subWin.emptylabel_2, indicatoron=0, text="Around the Clock", font=(mainApp.font, 14),
                                           width=27, pady=5, bg=mainApp.modeButton_bg_color, activebackground=mainApp.activeButton_bg_color, selectcolor = mainApp.activeButton_bg_color,
                                           fg=mainApp.modeButton_ft_color, anchor="center", variable=mode, value=3, command=lambda: mainApp.selectedMode(3), state=DISABLED)
 
-    mainApp.subWin.mode4 = Radiobutton(mainApp.subWin.emptylabel_2, indicatoron=0, text="180 Around the Clock", font=("Helvetica", 14),
+    mainApp.subWin.mode4 = Radiobutton(mainApp.subWin.emptylabel_2, indicatoron=0, text="180 Around the Clock", font=(mainApp.font, 14),
                                           width=27, pady=5, bg=mainApp.modeButton_bg_color, activebackground=mainApp.activeButton_bg_color, selectcolor = mainApp.activeButton_bg_color,
                                           fg=mainApp.modeButton_ft_color, anchor="center", variable=mode, value=4, command=lambda: mainApp.selectedMode(4), state=DISABLED)
 
-    mainApp.subWin.mode5 = Radiobutton(mainApp.subWin.emptylabel_2, indicatoron=0, text="Baseball", font=("Helvetica", 14),
+    mainApp.subWin.mode5 = Radiobutton(mainApp.subWin.emptylabel_2, indicatoron=0, text="Baseball", font=(mainApp.font, 14),
                                           width=27, pady=5, bg=mainApp.modeButton_bg_color, activebackground=mainApp.activeButton_bg_color, selectcolor = mainApp.activeButton_bg_color,
                                           fg=mainApp.modeButton_ft_color, anchor="center", variable=mode, value=5, command=lambda: mainApp.selectedMode(5), state=DISABLED)
 
-    mainApp.subWin.mode6 = Radiobutton(mainApp.subWin.emptylabel_2, indicatoron=0, text="Chase The Dragon", font=("Helvetica", 14),
+    mainApp.subWin.mode6 = Radiobutton(mainApp.subWin.emptylabel_2, indicatoron=0, text="Chase The Dragon", font=(mainApp.font, 14),
                                           width=27, pady=5, bg=mainApp.modeButton_bg_color, activebackground=mainApp.activeButton_bg_color, selectcolor = mainApp.activeButton_bg_color,
                                           fg=mainApp.modeButton_ft_color, anchor="center", variable=mode, value=6, command=lambda: mainApp.selectedMode(6), state=DISABLED)
 
-    mainApp.subWin.mode7 = Radiobutton(mainApp.subWin.emptylabel_2, indicatoron=0, text="Cricket", font=("Helvetica", 14),
+    mainApp.subWin.mode7 = Radiobutton(mainApp.subWin.emptylabel_2, indicatoron=0, text="Cricket", font=(mainApp.font, 14),
                                           padx=5, pady=5, bg=mainApp.modeButton_bg_color, activebackground=mainApp.activeButton_bg_color, selectcolor = mainApp.activeButton_bg_color,
                                           fg=mainApp.modeButton_ft_color, anchor="center", variable=mode, value=7, command=lambda: mainApp.selectedMode(7))
 
@@ -129,13 +129,13 @@ def populateGModeGUI(mainApp, master):
     # Buttons
     #----------------------------------------------------------------------------------------------------------------
     mainApp.subWin.button_commitGameMode = Button(mainApp.subWin.emptylabel_3, text="Appliquer", padx=12, pady=5, anchor='center',
-                                                     font=("Helvetica", 14), bg=mainApp.modeButton_bg_color,
+                                                     font=(mainApp.font, 14), bg=mainApp.modeButton_bg_color,
                                                      fg=mainApp.currentplayer_color, command=lambda: mainApp.commitGameMode(master), width=11,
                                                      activebackground=mainApp.activeButton_bg_color, state='disabled',
                                                      activeforeground=mainApp.activeButton_ft_color)
 
     mainApp.subWin.button_cancel = Button(mainApp.subWin.emptylabel_3, text="Annuler", padx=12, pady=5, anchor='center',
-                                             font=("Helvetica", 14), bg=mainApp.modeButton_bg_color,
+                                             font=(mainApp.font, 14), bg=mainApp.modeButton_bg_color,
                                              fg=mainApp.modeButton_ft_color, width=11,
                                              activebackground=mainApp.activeButton_bg_color,
                                              activeforeground=mainApp.activeButton_ft_color,
