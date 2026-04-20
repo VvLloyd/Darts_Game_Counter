@@ -26,6 +26,9 @@ def apply_texture(panel, image_path):
     canvas.bind("<Configure>", draw)
 
 def populateGUI(self, master):
+
+    mode = self.match_inst.CommitGameMode[0]
+
     master.configure(bg=self.Button_bg_color)
     master.title("Score Board")
     master.state("zoomed")
@@ -92,12 +95,21 @@ def populateGUI(self, master):
     # ---------------------------
     # CENTER FRAME (your fixed UI)
     # ---------------------------
-    self.center_frame = Frame(
-        self.outer_frame,
-        width=1080,
-        height=880,
-        bg=self.Button_bg_color
-    )
+    if mode == 7:
+        self.center_frame = Frame(
+            self.outer_frame,
+            width=1060,
+            height=883,
+            bg=self.Button_bg_color
+        )
+    else:
+        self.center_frame = Frame(
+            self.outer_frame,
+            width=1060,
+            height=852,
+            bg=self.Button_bg_color
+        )    
+    
     self.center_frame.grid(row=1, column=1)
 
     # 🔑 Prevent resizing
@@ -138,14 +150,14 @@ def populateGUI(self, master):
 
     # To create horizontal space between frames (this area provide instructions & Game Status)
     self.emptylabel0 = Label(self.BackgroundFrame, padx=25, pady=30, bg=self.Button_bg_color)
-    self.emptylabel0.grid(row=2, column=0, columnspan=3)
+    self.emptylabel0.grid(row=2, column=0, columnspan=4)
 
     # To create a vertical space between first column of frames
     self.emptylabel_1 = Label(self.BackgroundFrame, padx=20, pady=5, bg=self.Button_bg_color)
     self.emptylabel_1.grid(row=2, column=0, rowspan=14)
 
     # Calculator and submit button frame
-    self.frame1 = LabelFrame(self.BackgroundFrame, padx=25, pady=10, bg=self.Button_bg_color)
+    self.frame1 = LabelFrame(self.BackgroundFrame, padx=40, pady=20, bg=self.Button_bg_color)
     self.frame1.grid(row=5, column=0, columnspan=3, rowspan=5)
 
     # To create a vertical space after first column of frames
@@ -174,55 +186,55 @@ def populateGUI(self, master):
 
     # Define buttons
     # Clickpad
-    self.button_0 = Button(self.frame1, text="0", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
+    self.button_0 = Button(self.frame1, text="0", padx=40, pady=20, font=(self.font, self.fontsize_clickpad), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(0),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_1 = Button(self.frame1, text="1", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
+    self.button_1 = Button(self.frame1, text="1", padx=40, pady=20, font=(self.font, self.fontsize_clickpad), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(1),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_2 = Button(self.frame1, text="2", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
+    self.button_2 = Button(self.frame1, text="2", padx=40, pady=20, font=(self.font, self.fontsize_clickpad), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(2),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_3 = Button(self.frame1, text="3", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
+    self.button_3 = Button(self.frame1, text="3", padx=40, pady=20, font=(self.font, self.fontsize_clickpad), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(3),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_4 = Button(self.frame1, text="4", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
+    self.button_4 = Button(self.frame1, text="4", padx=40, pady=20, font=(self.font, self.fontsize_clickpad), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(4),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_5 = Button(self.frame1, text="5", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
+    self.button_5 = Button(self.frame1, text="5", padx=40, pady=20, font=(self.font, self.fontsize_clickpad), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(5),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_6 = Button(self.frame1, text="6", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
+    self.button_6 = Button(self.frame1, text="6", padx=40, pady=20, font=(self.font, self.fontsize_clickpad), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(6),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_7 = Button(self.frame1, text="7", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
+    self.button_7 = Button(self.frame1, text="7", padx=40, pady=20, font=(self.font, self.fontsize_clickpad), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(7),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_8 = Button(self.frame1, text="8", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
+    self.button_8 = Button(self.frame1, text="8", padx=40, pady=20, font=(self.font, self.fontsize_clickpad), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(8),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
-    self.button_9 = Button(self.frame1, text="9", padx=40, pady=20, font=(self.font, 25), bg=self.Button_bg_color,
+    self.button_9 = Button(self.frame1, text="9", padx=40, pady=20, font=(self.font, self.fontsize_clickpad), bg=self.Button_bg_color,
                            fg=self.Button_ft_color, command=lambda: self.clickPad(9),
                            activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
 
     # Commit Score
-    self.button_commitScore = Button(self.frame1, text="Soumettre", padx=100, pady=20, font=(self.font, 25),
+    self.button_commitScore = Button(self.frame1, text="Soumettre", padx=95, pady=20, font=(self.font, self.fontsize_submit),
                                      bg=self.Button_bg_color, fg=self.currentplayer_color, command=self.commitScore,
                                      activebackground=self.activeButton_bg_color,
                                      activeforeground=self.activeButton_ft_color,
                                      state="disabled")
 
-    self.button_clear = Button(self.frame1, text="C", padx=99.49999, pady=20, font=(self.font, 25),
+    self.button_clear = Button(self.frame1, text="C", padx=99.49999, pady=20, font=(self.font, self.fontsize_c),
                                bg=self.Button_bg_color, fg=self.Button_ft_color, command=self.clearClickPad,
                                activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color)
 
@@ -271,14 +283,14 @@ def populateGUI(self, master):
     #                           activebackground=self.activeButton_bg_color,
     #                          activeforeground=self.activeButton_ft_color)
 
-    self.button_quit = Button(self.BackgroundFrame, text="Quitter", padx=40, pady=5, font=(self.font, 12),
+    self.button_quit = Button(self.BackgroundFrame, text="Quitter", padx=30, pady=5, font=(self.font, 12),
                               bg=self.Button_bg_color, fg=self.Button_ft_color,
                               activebackground=self.activeButton_bg_color, activeforeground=self.activeButton_ft_color,
                               command=lambda: self.quitGame(master))
 
     # Warning: The restartBoard kills the window without changing the status of the quitGamePressed variable in the run.py.
     # This will cause the while loop to restart again.
-    self.button_restartBoard = Button(self.BackgroundFrame, text="Réinitialiser Jeu", padx=40, pady=5,
+    self.button_restartBoard = Button(self.BackgroundFrame, text="Réinitialiser Jeu", padx=22, pady=5,
                                       font=(self.font, 12),
                                       bg=self.Button_bg_color, fg=self.Button_ft_color, command=master.quit,
                                       state=NORMAL,
@@ -400,10 +412,8 @@ def populateGUI(self, master):
         # Score entry (big number) keeps black border
         score_entry = create_entry(frame, 6, (self.font, 25), borderwidth=1, border_zero=False)
         self.player_labels_dict[i]['score'] = score_entry
-        self.player_score_labels.append(score_entry)
+        self.player_score_labels.append(score_entry)      
         
-        mode = self.match_inst.CommitGameMode[0]
-
         # ---------- 301 / 501 ----------
         if mode in (1, 2):
             starting_score = "301" if mode == 1 else "501"
@@ -520,17 +530,35 @@ def populateGUI(self, master):
     self.StatusLabel = Label(self.emptylabel0, padx=1, pady=20, text="Ajoutez au moins un joueur!",
                              font=(self.font, 12), bg=self.Button_bg_color,
                              fg=self.Button_status_ft_color)
-    self.StatusLabel.grid(row=0, column=0)
+    self.StatusLabel.grid(row=0, column=1, columnspan=3)
 
     # ---------------------------------------------------------------------------------------------------------------
     # CREATING IMAGES (from .SGI files)
     # ---------------------------------------------------------------------------------------------------------------
     global logoImage
 
-    logoImage = ImageTk.PhotoImage(Image.open("./data/images/dart_Logo2.sgi"))
-    self.logoImage = Label(self.emptylabel_3, image=logoImage, bg=self.Button_bg_color, fg="grey")
-    self.logoImage.grid(row=1, column=1, columnspan=3)
+    # Load image
+    img = Image.open("./data/images/dart_Logo4.sgi")
 
+    # Resize it (width, height)
+    img = img.resize((250, 250), Image.LANCZOS)  # high-quality downsampling
+
+    # Convert to Tkinter image
+    logoImage = ImageTk.PhotoImage(img)
+
+    # Keep a reference!
+    self.logoImage = logoImage
+
+    # Create label
+    label = Label(self.emptylabel_3, image=logoImage, bg=self.Button_bg_color)
+    label.grid(row=1, column=2, columnspan=3)
+    
+    
+    '''
+    logoImage = ImageTk.PhotoImage(Image.open("./data/images/dart_Logo4.sgi"))
+    self.logoImage = Label(self.emptylabel_3, image=logoImage, bg=self.Button_bg_color, fg="grey")
+    self.logoImage.grid(row=1, column=2, columnspan=3)
+    '''
     # ---------------------------------------------------------------------------------------------------------------
     # SOFTWARE VERSION LABEL
     # ---------------------------------------------------------------------------------------------------------------

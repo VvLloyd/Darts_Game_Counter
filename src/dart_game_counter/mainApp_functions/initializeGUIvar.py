@@ -6,6 +6,10 @@ def initializeGUIvar(mainApp):
     mainApp.colorTheme = "default"
     #mainApp.font = 'Consolas'
     mainApp.font = 'Fixedsys'
+    mainApp.fontsize_clickpad = 20
+    mainApp.fontsize_submit = 17
+    mainApp.fontsize_c = 17
+    mainApp.fontsize_start = 20
     # Visual Stuff. These are used in the Populate GUI methods:
     if mainApp.colorTheme == "default":
         mainApp.Button_bg_color = "#21453A"
@@ -55,7 +59,7 @@ def initializeGUIvar(mainApp):
         mainApp.team_1_color = "#129FE1"
         mainApp.team_2_color = "#DC8E0F"
 
-        mainApp.textured_path = "./data/images/retro_pattern.png"
+        mainApp.textured_path = "./data/images/retro_pattern1.png"
 
     # Variables  
     mainApp.p1_DoubleInVar = False
