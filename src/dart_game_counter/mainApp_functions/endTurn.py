@@ -22,7 +22,7 @@ def endTurn(mainApp):
             highlightbackground=mainApp.Button_bg_color
         )
         mainApp.player_frames_list[next_player - 1].config(
-            highlightbackground=mainApp.currentplayer_color
+            highlightbackground=mainApp.currentplayer_border_color
         )
 
         mode = mainApp.match_inst.CommitGameMode[0]

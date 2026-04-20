@@ -99,14 +99,14 @@ def populateGUI(self, master):
         self.center_frame = Frame(
             self.outer_frame,
             width=1060,
-            height=883,
+            height=910,
             bg=self.Button_bg_color
         )
     else:
         self.center_frame = Frame(
             self.outer_frame,
             width=1060,
-            height=852,
+            height=870,
             bg=self.Button_bg_color
         )    
     
@@ -150,14 +150,14 @@ def populateGUI(self, master):
 
     # To create horizontal space between frames (this area provide instructions & Game Status)
     self.emptylabel0 = Label(self.BackgroundFrame, padx=25, pady=30, bg=self.Button_bg_color)
-    self.emptylabel0.grid(row=2, column=0, columnspan=4)
+    self.emptylabel0.grid(row=2, column=0, columnspan=5)
 
     # To create a vertical space between first column of frames
     self.emptylabel_1 = Label(self.BackgroundFrame, padx=20, pady=5, bg=self.Button_bg_color)
     self.emptylabel_1.grid(row=2, column=0, rowspan=14)
 
     # Calculator and submit button frame
-    self.frame1 = LabelFrame(self.BackgroundFrame, padx=40, pady=20, bg=self.Button_bg_color)
+    self.frame1 = LabelFrame(self.BackgroundFrame, padx=20, pady=20, bg=self.Button_bg_color)
     self.frame1.grid(row=5, column=0, columnspan=3, rowspan=5)
 
     # To create a vertical space after first column of frames
@@ -177,7 +177,7 @@ def populateGUI(self, master):
     self.frame9.grid(row=3, column=4, columnspan=7, rowspan=1, sticky=W)
 
     # End turn button frame
-    self.frame7 = LabelFrame(self.BackgroundFrame, padx=10, pady=5, bg=self.Button_bg_color)
+    self.frame7 = LabelFrame(self.BackgroundFrame, padx=5, pady=5, bg=self.Button_bg_color)
     self.frame7.grid(row=10, column=0, columnspan=3)
 
     # --------------------------------------------------------------------------------------------------------------
@@ -267,7 +267,7 @@ def populateGUI(self, master):
                                    activebackground=self.activeButton_bg_color,
                                    activeforeground=self.activeButton_ft_color, state="disabled")
 
-    self.button_endTurn = Button(self.frame7, text="Tour terminé", padx=40, pady=5, font=(self.font, 12),
+    self.button_endTurn = Button(self.frame7, text="Tour terminé", padx=10, pady=0, font=(self.font, 17),
                                  bg=self.Button_bg_color, fg=self.Button_ft_color,
                                  command=self.endTurn, state="disabled",
                                  activebackground=self.activeButton_bg_color,
@@ -398,8 +398,8 @@ def populateGUI(self, master):
         self.player_labels_dict[i] = {}
 
         # Name entry
-        name_entry = create_entry(frame, 16, (self.font, 14))
-        setup_entry(name_entry, 0, 0, f"Ajoutez le Joueur #{i}", columnspan=3)
+        name_entry = create_entry(frame, 12, (self.font, 17))
+        setup_entry(name_entry, 0, 0, f"Joueur #{i}", columnspan=4)
         self.player_labels_dict[i]['name'] = name_entry
         self.player_name_labels.append(name_entry)
 
@@ -431,7 +431,7 @@ def populateGUI(self, master):
                     variable=var,
                     command=self.DoubleIncheckChanged,
                     disabledforeground=self.disabledButton_ft_color,
-                    font="black",
+                    font=self.font,
                     bg=self.Button_bg_color,
                     state="disabled"
                 )
@@ -528,7 +528,7 @@ def populateGUI(self, master):
     # CREATING STATUS
     # ---------------------------------------------------------------------------------------------------------------
     self.StatusLabel = Label(self.emptylabel0, padx=1, pady=20, text="Ajoutez au moins un joueur!",
-                             font=(self.font, 12), bg=self.Button_bg_color,
+                             font=(self.font, 16), bg=self.Button_bg_color,
                              fg=self.Button_status_ft_color)
     self.StatusLabel.grid(row=0, column=1, columnspan=3)
 
@@ -551,20 +551,14 @@ def populateGUI(self, master):
 
     # Create label
     label = Label(self.emptylabel_3, image=logoImage, bg=self.Button_bg_color)
-    label.grid(row=1, column=2, columnspan=3)
-    
-    
-    '''
-    logoImage = ImageTk.PhotoImage(Image.open("./data/images/dart_Logo4.sgi"))
-    self.logoImage = Label(self.emptylabel_3, image=logoImage, bg=self.Button_bg_color, fg="grey")
-    self.logoImage.grid(row=1, column=2, columnspan=3)
-    '''
+    label.grid(row=1, column=2, columnspan=3)    
+   
     # ---------------------------------------------------------------------------------------------------------------
     # SOFTWARE VERSION LABEL
     # ---------------------------------------------------------------------------------------------------------------
     self.softVersionLabel = Label(self.BackgroundFrame, padx=1, pady=1, text=self.softVersion,
                                   font=(self.font, "12", "italic"), bg=self.Button_bg_color,
-                                  fg="black")
+                                  fg=self.version_color)
 
     self.softVersionLabel.grid(row=13, column=0, rowspan=2, sticky="SW")
 

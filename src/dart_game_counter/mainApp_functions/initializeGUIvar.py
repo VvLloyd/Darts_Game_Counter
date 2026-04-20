@@ -20,7 +20,8 @@ def initializeGUIvar(mainApp):
         mainApp.activeButton_ft_color = "#D3DBE5"
         mainApp.disabledButton_ft_color = "#D3DBE5"
         mainApp.disabledButton_bg_color = "#21453A"
-        mainApp.currentplayer_color = "#CAB812"
+        mainApp.currentplayer_color = "#a9d732"
+        mainApp.currentplayer_border_color = "#a9d732"
 
         mainApp.modeButton_bg_color = "#21453A"
         mainApp.modeButton_ft_color = "#D3DBE5"
@@ -34,6 +35,8 @@ def initializeGUIvar(mainApp):
         mainApp.team_1_color = "#129FE1"
         mainApp.team_2_color = "#DC8E0F"
 
+        mainApp.version_color = "#212121"
+
         mainApp.textured_path = "./data/images/retro_pattern_default.png"
 
     if mainApp.colorTheme == "Dark":
@@ -45,7 +48,8 @@ def initializeGUIvar(mainApp):
         mainApp.activeButton_ft_color = "#D3DBE5"
         mainApp.disabledButton_ft_color = "#D3DBE5"
         mainApp.disabledButton_bg_color = "#262626"
-        mainApp.currentplayer_color = "#CAB812"
+        mainApp.currentplayer_color = "#149c61"
+        mainApp.currentplayer_border_color = "#149c61"
 
         mainApp.modeButton_bg_color = "#282828"
         mainApp.modeButton_ft_color = "#D1D2D3"
@@ -59,7 +63,9 @@ def initializeGUIvar(mainApp):
         mainApp.team_1_color = "#129FE1"
         mainApp.team_2_color = "#DC8E0F"
 
-        mainApp.textured_path = "./data/images/retro_pattern1.png"
+        mainApp.version_color = "#666666"
+
+        mainApp.textured_path = "./data/images/retro_pattern_default.png"
 
     # Variables  
     mainApp.p1_DoubleInVar = False
