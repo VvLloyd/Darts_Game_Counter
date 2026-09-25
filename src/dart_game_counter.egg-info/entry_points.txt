@@ -1,0 +1,2 @@
+[console_scripts]
+dart_game_counter = dart_game_counter.__main__:main
