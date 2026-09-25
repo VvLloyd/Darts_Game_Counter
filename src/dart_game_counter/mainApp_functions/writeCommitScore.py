@@ -58,8 +58,8 @@ def writeCommitScore(mainApp, number='', player_id=None, event=None):
 
         # Define teams (only used in team mode)
         teams = {
-            1: [1, 2],
-            2: [3, 4]
+            1: [1, 3],
+            2: [2, 4]
         }
 
         def get_team(player):

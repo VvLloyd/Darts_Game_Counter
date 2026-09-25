@@ -7,8 +7,8 @@ def initializeGUIvar(mainApp):
     #mainApp.font = 'Consolas'
     mainApp.font = 'Fixedsys'
     mainApp.fontsize_clickpad = 20
-    mainApp.fontsize_submit = 17
-    mainApp.fontsize_c = 17
+    mainApp.fontsize_submit = 19
+    mainApp.fontsize_c = 19
     mainApp.fontsize_start = 20
     # Visual Stuff. These are used in the Populate GUI methods:
     if mainApp.colorTheme == "default":

@@ -2,6 +2,8 @@ from tkinter import *
 import dart_game_counter.centerWindow as cW
 from PIL import ImageTk, Image
 
+from screeninfo import get_monitors
+
 def apply_texture(panel, image_path):
     canvas = Canvas(panel, highlightthickness=0)
     canvas.pack(fill="both", expand=True)
@@ -99,14 +101,14 @@ def populateGUI(self, master):
         self.center_frame = Frame(
             self.outer_frame,
             width=1060,
-            height=910,
+            height=890,
             bg=self.Button_bg_color
         )
     else:
         self.center_frame = Frame(
             self.outer_frame,
             width=1060,
-            height=870,
+            height=860,
             bg=self.Button_bg_color
         )    
     

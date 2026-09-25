@@ -7,7 +7,7 @@ def populateGModeGUI(mainApp, master):
 
     mainApp.subWin = Tk()
     mainApp.subWin.eval('tk::PlaceWindow . center')
-    mainApp.subWin.geometry("285x420")
+    mainApp.subWin.geometry("325x500")
 
     mode = mainApp.match_inst.CommitGameMode[0]  # Value between 1 and 7
     double_in = mainApp.match_inst.CommitGameMode[1]  # True or False

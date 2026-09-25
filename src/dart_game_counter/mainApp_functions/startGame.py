@@ -33,7 +33,7 @@ def startGame(mainApp):
         def get_team_color(player_id, n_players):
             if n_players != 4:
                 return mainApp.currentplayer_color
-            if player_id in [0, 1]:
+            if player_id in [0, 2]:
                 return mainApp.team_1_color
             else:
                 return mainApp.team_2_color
